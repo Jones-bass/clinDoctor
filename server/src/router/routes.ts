@@ -1,10 +1,10 @@
 import { FastifyInstance } from 'fastify';
-import { RegisterPatientController } from '../controller/registerPatientController';
-import { RegisterDoctorController } from '../controller/registerDoctorController';
-import { RegisterScheduleController } from '../controller/registerScheduleController';
+import { RegisterPatientController } from '../controller/patient/registerPatientController';
+import { RegisterDoctorController } from '../controller/doctor/registerDoctorController';
+import { RegisterScheduleController } from '../controller/schedule/registerScheduleController';
 
 export async function eventRoutes(app: FastifyInstance) {
-  app.post('/pacient', RegisterPatientController);
+  app.post('/patient', RegisterPatientController);
 
   app.post('/doctor', RegisterDoctorController);
 

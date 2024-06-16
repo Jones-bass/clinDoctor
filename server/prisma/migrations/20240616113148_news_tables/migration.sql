@@ -22,7 +22,7 @@ CREATE TABLE "Doctor" (
     "name" TEXT NOT NULL,
     "speciality" TEXT NOT NULL,
     "price" REAL NOT NULL,
-    "availability" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
     "experience" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -32,7 +32,6 @@ CREATE TABLE "Schedule" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "doctorId" INTEGER NOT NULL,
     "date" DATETIME NOT NULL,
-    "available" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "Schedule_doctorId_fkey" FOREIGN KEY ("doctorId") REFERENCES "Doctor" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );

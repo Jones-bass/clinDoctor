@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { makeRegisterUseCase } from '../usecases/factories/make-register-case'
-import { PatientAlreadyExistsError } from '../errors/patient-already-exists-error'
+import { makeRegisterUseCase } from '../../usecases/factories/make-register-case'
+import { PatientAlreadyExistsError } from '../../errors/patient-already-exists-error'
 
 export async function RegisterPatientController(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -15,13 +15,13 @@ export async function RegisterPatientController(request: FastifyRequest, reply: 
   try {
     const registerUseCase = makeRegisterUseCase()
 
-    const { user } = await registerUseCase.execute({
+    const { userPatient } = await registerUseCase.execute({
       phone,
       name,
       password,
     })
 
-    return reply.status(200).send({ user })
+    return reply.status(200).send({ userPatient })
   } catch (err) {
     if (err instanceof PatientAlreadyExistsError) {
       return reply.status(409).send({ message: err.message })

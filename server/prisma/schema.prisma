@@ -28,14 +28,14 @@ model Patient {
 }
 
 model Doctor {
-  id           Int        @id @default(autoincrement())
-  name         String
-  speciality   String
-  price        Float
-  availability String
-  experience   String
-  createdAt    DateTime   @default(now())
-  Schedule     Schedule[]
+  id          Int        @id @default(autoincrement())
+  name        String
+  speciality  String
+  price       Float
+  description String
+  experience  String
+  createdAt   DateTime   @default(now())
+  Schedule    Schedule[]
 }
 
 model Schedule {
@@ -43,6 +43,5 @@ model Schedule {
   doctorId  Int
   date      DateTime
   doctor    Doctor   @relation(fields: [doctorId], references: [id])
-  available Boolean  @default(true)
   createdAt DateTime @default(now())
 }

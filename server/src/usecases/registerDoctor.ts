@@ -5,7 +5,7 @@ interface RegisterUseCaseRequest {
   name: string;
   speciality: string;
   price: number;
-  availability: string;
+  description: string;
   experience: string;
 }
 
@@ -18,7 +18,7 @@ export class RegisterDoctorUseCase {
 
   async execute({
     name,
-    availability,
+    description,
     experience,
     price,
     speciality,
@@ -26,7 +26,7 @@ export class RegisterDoctorUseCase {
 
     const createdDoctor = await this.doctorRepository.create({
       name,
-      availability,
+      description,
       experience,
       price,
       speciality,

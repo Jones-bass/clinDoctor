@@ -10,7 +10,7 @@ interface RegisterUseCaseRequest {
 }
 
 interface RegisterUseCaseResponse {
-  user: Patient;
+  userPatient: Patient;
 }
 
 export class RegisterPatientUseCase {
@@ -30,7 +30,7 @@ export class RegisterPatientUseCase {
       throw new PatientAlreadyExistsError();
     }
 
-    const user = await this.patientRepository.create({
+    const userPatient = await this.patientRepository.create({
       name,
       phone,
       user: {
@@ -41,6 +41,6 @@ export class RegisterPatientUseCase {
       },  
     });
 
-    return { user };
+    return { userPatient };
   }
 }

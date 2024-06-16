@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { makeRegisterScheduleUseCase } from '../usecases/factories/make-register-schedule-case';
 import { parseISO } from 'date-fns';
-import { AppointmentHourError } from '../errors/appointment-hour-error';
-import { PasteDateError } from '../errors/past-date-error';
-import { InvalidAppointmentTimeError } from '../errors/appointment-hour-invalid-error';
+import { makeRegisterScheduleUseCase } from '../../usecases/factories/make-register-schedule-case';
+import { AppointmentHourError } from '../../errors/appointment-hour-error';
+import { PasteDateError } from '../../errors/past-date-error';
+import { InvalidAppointmentTimeError } from '../../errors/appointment-hour-invalid-error';
 
 export async function RegisterScheduleController(request: FastifyRequest, reply: FastifyReply) {
   const ScheduleSchema = z.object({

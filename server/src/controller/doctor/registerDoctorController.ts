@@ -1,19 +1,20 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { makeRegisterDoctorUseCase } from '../usecases/factories/make-register-doctor-case';
+import { makeRegisterDoctorUseCase } from '../../usecases/factories/make-register-doctor-case';
+
 
 export async function RegisterDoctorController(request: FastifyRequest, reply: FastifyReply) {
   const DoctorSchema = z.object({
     name: z.string(),
     speciality: z.string(),
     price: z.number(),
-    availability: z.string(),
+    description: z.string(),
     experience: z.string(),
   });
 
   const {
     name,
-    availability,
+    description,
     experience,
     price,
     speciality
@@ -24,7 +25,7 @@ export async function RegisterDoctorController(request: FastifyRequest, reply: F
 
     const { doctor } = await registerUseCase.execute({
       name,
-      availability,
+      description,
       experience,
       price,
       speciality,
