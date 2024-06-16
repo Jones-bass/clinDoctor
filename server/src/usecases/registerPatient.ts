@@ -13,7 +13,7 @@ interface RegisterUseCaseResponse {
   user: Patient;
 }
 
-export class RegisterUseCase {
+export class RegisterPatientUseCase {
   constructor(private patientRepository: PatientRepository) {}
 
   async execute({
