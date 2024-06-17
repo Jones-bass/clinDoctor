@@ -15,4 +15,9 @@ export class PrismaPatientRepository implements PatientRepository {
 
     return phoneId;
   }
+
+  async findAllPatient(): Promise<Patient[]> {
+    const patients = await prisma.patient.findMany();
+    return patients;
+  }
 }

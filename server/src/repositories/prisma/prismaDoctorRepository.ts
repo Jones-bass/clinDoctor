@@ -7,4 +7,9 @@ export class PrismaDoctorRepository implements DoctorRepository {
     const createdDoctor = await prisma.doctor.create({ data });
     return createdDoctor;
   }
+
+  async findAllDoctors(): Promise<Doctor[]> {
+    const doctors = await prisma.doctor.findMany();
+    return doctors;
+  }
 }
