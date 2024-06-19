@@ -4,6 +4,7 @@ import { ListPatientController } from '../controller/patient/listPatientControll
 import { ListDoctorsController } from '../controller/doctor/listDoctorController';
 import { RegisterDoctorController } from '../controller/doctor/registerDoctorController';
 import { RegisterScheduleController } from '../controller/schedule/registerScheduleController';
+import { RegisterAppointment } from '../controller/appoitment/registerAppoitment';
 
 export async function eventRoutes(app: FastifyInstance) {
   app.post('/patient', RegisterPatientController);
@@ -14,4 +15,5 @@ export async function eventRoutes(app: FastifyInstance) {
 
   app.post('/schedule', RegisterScheduleController);
 
+  app.post('/appointment', RegisterAppointment);
 }

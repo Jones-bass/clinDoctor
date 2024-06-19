@@ -19,12 +19,13 @@ model User {
 }
 
 model Patient {
-  id        Int      @id @default(autoincrement())
-  userId    Int      @unique
-  name      String
-  phone     String   @unique
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
+  id          Int           @id @default(autoincrement())
+  userId      Int           @unique
+  name        String
+  phone       String        @unique
+  user        User          @relation(fields: [userId], references: [id])
+  createdAt   DateTime      @default(now())
+  Appointment Appointment[]
 }
 
 model Doctor {
@@ -39,9 +40,20 @@ model Doctor {
 }
 
 model Schedule {
-  id        Int      @id @default(autoincrement())
-  doctorId  Int
-  date      DateTime
-  doctor    Doctor   @relation(fields: [doctorId], references: [id])
-  createdAt DateTime @default(now())
+  id          Int           @id @default(autoincrement())
+  doctorId    Int
+  date        DateTime
+  doctor      Doctor        @relation(fields: [doctorId], references: [id])
+  createdAt   DateTime      @default(now())
+  Appointment Appointment[]
+}
+
+model Appointment {
+  id         Int      @id @default(autoincrement())
+  patientId  Int
+  scheduleId Int
+  date       DateTime
+  patient    Patient  @relation(fields: [patientId], references: [id])
+  schedule   Schedule @relation(fields: [scheduleId], references: [id])
+  createdAt  DateTime @default(now())
 }

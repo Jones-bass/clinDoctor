@@ -37,7 +37,8 @@ export class RegisterScheduleUseCase {
 
     const createdSchedule = await this.scheduleRepository.create({
       doctorId,
-      date: appointmentDate,
+      date: new Date(appointmentDate).toISOString(),
+
     });
 
     return { schedule: createdSchedule };
