@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { makeRegisterUseCase } from '../../usecases/factories/make-register-case'
+import { makeRegisterPatientUseCase } from '../../usecases/factories/make-register-case'
 import { PatientAlreadyExistsError } from '../../errors/patient-already-exists-error'
 
 export async function RegisterPatientController(request: FastifyRequest, reply: FastifyReply) {
@@ -13,7 +13,7 @@ export async function RegisterPatientController(request: FastifyRequest, reply: 
   const { name, phone, password } = registerBodySchema.parse(request.body)
 
   try {
-    const registerUseCase = makeRegisterUseCase()
+    const registerUseCase = makeRegisterPatientUseCase()
 
     const { userPatient } = await registerUseCase.execute({
       phone,

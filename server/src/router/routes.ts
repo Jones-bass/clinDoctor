@@ -3,8 +3,10 @@ import { RegisterPatientController } from '../controller/patient/registerPatient
 import { ListPatientController } from '../controller/patient/listPatientController';
 import { ListDoctorsController } from '../controller/doctor/listDoctorController';
 import { RegisterDoctorController } from '../controller/doctor/registerDoctorController';
-import { RegisterScheduleController } from '../controller/schedule/registerScheduleController';
-import { RegisterAppointment } from '../controller/appoitment/registerAppoitment';
+import { RegisterDoctorScheduleController } from '../controller/doctorSchedule/registerDoctorScheduleController';
+import { RegisterAppointmentController } from '../controller/appoitment/registerAppoitment';
+import { ListAppointmentsController } from '../controller/appoitment/listAppointmentsController';
+import { ListDoctorScheduleController } from '../controller/doctorSchedule/listDoctorScheduleController';
 
 export async function eventRoutes(app: FastifyInstance) {
   app.post('/patient', RegisterPatientController);
@@ -13,7 +15,9 @@ export async function eventRoutes(app: FastifyInstance) {
   app.post('/doctor', RegisterDoctorController);
   app.get('/doctors', ListDoctorsController);
 
-  app.post('/schedule', RegisterScheduleController);
+  app.post('/schedule', RegisterDoctorScheduleController);
+  app.get('/schedule', ListDoctorScheduleController);
 
-  app.post('/appointment', RegisterAppointment);
+  app.post('/appointment', RegisterAppointmentController);
+  app.get('/appointment', ListAppointmentsController);
 }

@@ -25,7 +25,7 @@ export class RegisterAppointmentUseCase {
 
     const newAppointment = await this.appointmentRepository.createAppointment({
       patient: { connect: { id: patientId } },
-      schedule: { connect: { id: scheduleId } },
+      doctorSchedule: { connect: { id: scheduleId } },
       date: new Date().toISOString() // or any specific date logic
     });
     

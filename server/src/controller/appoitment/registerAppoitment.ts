@@ -5,7 +5,7 @@ import { parseISO } from 'date-fns';
 import { AppointmentAlreadyExistsError } from '../../errors/email-already-exists-error';
 import { AppointmentHourError } from '../../errors/appointment-hour-error';
 
-export async function RegisterAppointment(
+export async function RegisterAppointmentController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {

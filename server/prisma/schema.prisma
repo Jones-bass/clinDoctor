@@ -29,17 +29,17 @@ model Patient {
 }
 
 model Doctor {
-  id          Int        @id @default(autoincrement())
-  name        String
-  speciality  String
-  price       Float
-  description String
-  experience  String
-  createdAt   DateTime   @default(now())
-  Schedule    Schedule[]
+  id             Int              @id @default(autoincrement())
+  name           String
+  speciality     String
+  price          Float
+  description    String
+  experience     String
+  createdAt      DateTime         @default(now())
+  DoctorSchedule DoctorSchedule[]
 }
 
-model Schedule {
+model DoctorSchedule {
   id          Int           @id @default(autoincrement())
   doctorId    Int
   date        DateTime
@@ -49,11 +49,11 @@ model Schedule {
 }
 
 model Appointment {
-  id         Int      @id @default(autoincrement())
-  patientId  Int
-  scheduleId Int
-  date       DateTime
-  patient    Patient  @relation(fields: [patientId], references: [id])
-  schedule   Schedule @relation(fields: [scheduleId], references: [id])
-  createdAt  DateTime @default(now())
+  id               Int            @id @default(autoincrement())
+  patientId        Int
+  doctorScheduleId Int
+  date             DateTime
+  patient          Patient        @relation(fields: [patientId], references: [id])
+  doctorSchedule   DoctorSchedule @relation(fields: [doctorScheduleId], references: [id])
+  createdAt        DateTime       @default(now())
 }
