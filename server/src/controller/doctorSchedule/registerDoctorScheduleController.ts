@@ -12,10 +12,11 @@ export async function RegisterDoctorScheduleController(
 ) {
   const ScheduleSchema = z.object({
     doctorId: z.string(),
+    available: z.boolean(),
     date: z.string(),
   })
 
-  const { doctorId, date } = ScheduleSchema.parse(request.body)
+  const { doctorId, date, available } = ScheduleSchema.parse(request.body)
   const parsedDate = parseISO(date)
 
   try {
@@ -23,6 +24,7 @@ export async function RegisterDoctorScheduleController(
 
     const { doctorSchedule } = await scheduleUseCase.execute({
       doctorId,
+      available,
       date: parsedDate,
     })
 

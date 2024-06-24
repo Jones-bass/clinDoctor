@@ -7,6 +7,7 @@ import { ConnectionsScheduleHourError } from '../errors/connectionsSchedule-hour
 
 interface DoctorScheduleRequest {
   doctorId: string
+  available: boolean
   date: Date
 }
 
@@ -20,6 +21,7 @@ export class RegisterDoctorScheduleUseCase {
   async execute({
     doctorId,
     date,
+    available,
   }: DoctorScheduleRequest): Promise<DoctorScheduleResponse> {
     const scheduleDate = startOfHour(date)
 
@@ -41,6 +43,7 @@ export class RegisterDoctorScheduleUseCase {
 
     const createdSchedule = await this.scheduleRepository.create({
       doctorId,
+      available,
       date: new Date(scheduleDate).toISOString(),
     })
 

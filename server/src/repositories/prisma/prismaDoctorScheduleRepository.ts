@@ -26,4 +26,15 @@ export class PrismaDoctorScheduleRepository
     const findDoctorSchedule = await prisma.doctorSchedule.findMany()
     return findDoctorSchedule
   }
+
+  async updateAvailability(
+    scheduleId: string,
+    available: boolean,
+  ): Promise<DoctorSchedule> {
+    const updatedSchedule = await prisma.doctorSchedule.update({
+      where: { id: scheduleId },
+      data: { available },
+    })
+    return updatedSchedule
+  }
 }

@@ -2,6 +2,8 @@ import { ConnectionsSchedule } from '@prisma/client'
 import { ConnectionsScheduleRepository } from '../repositories/connectionsSchedule-repository'
 import { AppointmentAlreadyExistsError } from '../errors/appointment-already-exists-error'
 
+import { DoctorScheduleRepository } from '../repositories/doctorScheduleRepository'
+
 interface RegisterConnectionsScheduleUseCaseResponse {
   connectionsSchedule: ConnectionsSchedule
 }
@@ -14,6 +16,7 @@ interface RegisterConnectionsScheduleUseCaseRequest {
 export class RegisterConnectionsScheduleUseCase {
   constructor(
     private connectionsScheduleRepository: ConnectionsScheduleRepository,
+    private doctorScheduleRepository: DoctorScheduleRepository,
   ) {}
 
   async execute({
@@ -35,6 +38,8 @@ export class RegisterConnectionsScheduleUseCase {
         patient: { connect: { id: patientId } },
         doctorSchedule: { connect: { id: scheduleId } },
       })
+
+    await this.doctorScheduleRepository.updateAvailability(scheduleId, false)
 
     return { connectionsSchedule: newConnectionsSchedule }
   }

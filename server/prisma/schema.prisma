@@ -43,6 +43,7 @@ model Doctor {
 
 model DoctorSchedule {
   id                  String                @id @default(uuid())
+  available           Boolean               @unique
   doctorId            String
   date                DateTime
   doctor              Doctor                @relation(fields: [doctorId], references: [id])

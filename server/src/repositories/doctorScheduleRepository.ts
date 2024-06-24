@@ -9,4 +9,8 @@ export interface DoctorScheduleRepository {
     date: Date,
   ): Promise<DoctorSchedule | null>
   findAllDoctorSchedule(): Promise<DoctorSchedule[]>
+  updateAvailability(
+    scheduleId: string,
+    available: boolean,
+  ): Promise<DoctorSchedule>
 }
