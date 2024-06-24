@@ -3,14 +3,20 @@ import { z } from 'zod'
 import { makeRegisterPatientUseCase } from '../../usecases/factories/make-register-case'
 import { PatientAlreadyExistsError } from '../../errors/patient-already-exists-error'
 
-export async function RegisterPatientController(request: FastifyRequest, reply: FastifyReply) {
+export async function RegisterPatientController(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const registerBodySchema = z.object({
     name: z.string(),
     phone: z.string(),
+    email: z.string(),
     password: z.string(),
   })
 
-  const { name, phone, password } = registerBodySchema.parse(request.body)
+  const { name, phone, password, email } = registerBodySchema.parse(
+    request.body,
+  )
 
   try {
     const registerUseCase = makeRegisterPatientUseCase()
@@ -19,6 +25,7 @@ export async function RegisterPatientController(request: FastifyRequest, reply: 
       phone,
       name,
       password,
+      email,
     })
 
     return reply.status(200).send({ userPatient })

@@ -1,16 +1,16 @@
-import { Doctor } from '@prisma/client';
-import { DoctorRepository } from '../repositories/doctorRepository';
+import { Doctor } from '@prisma/client'
+import { DoctorRepository } from '../repositories/doctorRepository'
 
 interface RegisterUseCaseRequest {
-  name: string;
-  speciality: string;
-  price: number;
-  description: string;
-  experience: string;
+  name: string
+  speciality: string
+  price: number
+  description: string
+  experience: string
 }
 
 interface RegisterUseCaseResponse {
-  doctor: Doctor;
+  doctor: Doctor
 }
 
 export class RegisterDoctorUseCase {
@@ -23,15 +23,14 @@ export class RegisterDoctorUseCase {
     price,
     speciality,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
-
     const createdDoctor = await this.doctorRepository.create({
       name,
       description,
       experience,
       price,
       speciality,
-    });
+    })
 
-    return { doctor: createdDoctor };
+    return { doctor: createdDoctor }
   }
 }

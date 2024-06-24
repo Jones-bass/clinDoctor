@@ -11,26 +11,28 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   phone     String   @unique
+  email     String
   password  String
   patient   Patient?
   createdAt DateTime @default(now())
 }
 
 model Patient {
-  id          Int           @id @default(autoincrement())
-  userId      Int           @unique
-  name        String
-  phone       String        @unique
-  user        User          @relation(fields: [userId], references: [id])
-  createdAt   DateTime      @default(now())
-  Appointment Appointment[]
+  id                  String                @id @default(uuid())
+  userId              String                @unique
+  name                String
+  email               String
+  phone               String                @unique
+  user                User                  @relation(fields: [userId], references: [id])
+  createdAt           DateTime              @default(now())
+  ConnectionsSchedule ConnectionsSchedule[]
 }
 
 model Doctor {
-  id             Int              @id @default(autoincrement())
-  name           String
+  id             String           @id @default(uuid())
+  name           String           @unique
   speciality     String
   price          Float
   description    String
@@ -40,19 +42,18 @@ model Doctor {
 }
 
 model DoctorSchedule {
-  id          Int           @id @default(autoincrement())
-  doctorId    Int
-  date        DateTime
-  doctor      Doctor        @relation(fields: [doctorId], references: [id])
-  createdAt   DateTime      @default(now())
-  Appointment Appointment[]
+  id                  String                @id @default(uuid())
+  doctorId            String
+  date                DateTime
+  doctor              Doctor                @relation(fields: [doctorId], references: [id])
+  createdAt           DateTime              @default(now())
+  ConnectionsSchedule ConnectionsSchedule[]
 }
 
-model Appointment {
-  id               Int            @id @default(autoincrement())
-  patientId        Int
-  doctorScheduleId Int
-  date             DateTime
+model ConnectionsSchedule {
+  id               String         @id @default(uuid())
+  patientId        String         @unique
+  doctorScheduleId String         @unique
   patient          Patient        @relation(fields: [patientId], references: [id])
   doctorSchedule   DoctorSchedule @relation(fields: [doctorScheduleId], references: [id])
   createdAt        DateTime       @default(now())

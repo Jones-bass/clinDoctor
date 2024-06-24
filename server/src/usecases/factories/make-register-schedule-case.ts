@@ -1,10 +1,11 @@
-import { PrismaDoctorScheduleRepository } from "../../repositories/prisma/prismaDoctorScheduleRepository"
-import { RegisterDoctorScheduleUseCase } from "../registerDoctorSchedule"
-
+import { PrismaDoctorScheduleRepository } from '../../repositories/prisma/prismaDoctorScheduleRepository'
+import { RegisterDoctorScheduleUseCase } from '../registerDoctorSchedule'
 
 export function makeRegisterDoctorScheduleUseCase() {
   const doctorScheduleRepository = new PrismaDoctorScheduleRepository()
-  const registerDoctorScheduleUseCase = new RegisterDoctorScheduleUseCase(doctorScheduleRepository)
+  const registerDoctorScheduleUseCase = new RegisterDoctorScheduleUseCase(
+    doctorScheduleRepository,
+  )
 
   return registerDoctorScheduleUseCase
 }

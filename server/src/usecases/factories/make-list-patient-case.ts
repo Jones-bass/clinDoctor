@@ -1,9 +1,9 @@
-import { PrismaPatientRepository } from "../../repositories/prisma/prismaPatientRepository";
-import { ListPatientsUseCase } from "../listPatients";
+import { PrismaPatientRepository } from '../../repositories/prisma/prismaPatientRepository'
+import { ListPatientsUseCase } from '../listPatients'
 
 export function makeListPatientsUseCase() {
-  const patientsRepository = new PrismaPatientRepository();
-  const listPatientsUseCase = new ListPatientsUseCase(patientsRepository);
+  const patientsRepository = new PrismaPatientRepository()
+  const listPatientsUseCase = new ListPatientsUseCase(patientsRepository)
 
-  return listPatientsUseCase;
+  return listPatientsUseCase
 }

@@ -1,10 +1,10 @@
 import fastify from 'fastify'
-import fastifyCors from "@fastify/cors";
+import fastifyCors from '@fastify/cors'
 
 import { env } from './env'
 
 import { ZodError } from 'zod'
-import { eventRoutes } from './router/routes';
+import { eventRoutes } from './router/routes'
 
 export const app = fastify()
 
@@ -29,7 +29,3 @@ app.setErrorHandler((error, _, reply) => {
 
   return reply.status(500).send({ message: 'Internal server error.' })
 })
-
-
-
-

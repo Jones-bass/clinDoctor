@@ -1,27 +1,24 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { makeRegisterDoctorUseCase } from '../../usecases/factories/make-register-doctor-case';
+import { makeRegisterDoctorUseCase } from '../../usecases/factories/make-register-doctor-case'
 
-
-export async function RegisterDoctorController(request: FastifyRequest, reply: FastifyReply) {
+export async function RegisterDoctorController(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const DoctorSchema = z.object({
     name: z.string(),
     speciality: z.string(),
     price: z.number(),
     description: z.string(),
     experience: z.string(),
-  });
+  })
 
-  const {
-    name,
-    description,
-    experience,
-    price,
-    speciality
-  } = DoctorSchema.parse(request.body);
+  const { name, description, experience, price, speciality } =
+    DoctorSchema.parse(request.body)
 
   try {
-    const registerUseCase = makeRegisterDoctorUseCase();
+    const registerUseCase = makeRegisterDoctorUseCase()
 
     const { doctor } = await registerUseCase.execute({
       name,
@@ -29,10 +26,10 @@ export async function RegisterDoctorController(request: FastifyRequest, reply: F
       experience,
       price,
       speciality,
-    });
+    })
 
-    return reply.status(200).send({ doctor });
+    return reply.status(200).send({ doctor })
   } catch (err) {
-    return reply.status(500).send({ message: 'Internal Server Error' });
+    return reply.status(500).send({ message: 'Internal Server Error' })
   }
 }
