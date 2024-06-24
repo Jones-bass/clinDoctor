@@ -1,15 +1,15 @@
-import { Patient } from '@prisma/client'
-import { PatientRepository } from '../repositories/patientRepository'
+import { PatientUser } from '@prisma/client'
+import { PatientUserRepository } from '../repositories/patientUserRepository'
 
 interface ListDoctorsResponse {
-  patients: Patient[]
+  patientUsers: PatientUser[]
 }
 
-export class ListPatientsUseCase {
-  constructor(private patientsRepository: PatientRepository) {}
+export class ListPatientUsersUseCase {
+  constructor(private patientUsersRepository: PatientUserRepository) {}
 
   async execute(): Promise<ListDoctorsResponse> {
-    const patients = await this.patientsRepository.findAllPatient()
-    return { patients }
+    const patientUsers = await this.patientUsersRepository.findAllPatientUser()
+    return { patientUsers }
   }
 }

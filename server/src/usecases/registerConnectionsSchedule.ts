@@ -24,7 +24,7 @@ export class RegisterConnectionsScheduleUseCase {
     patientId,
   }: RegisterConnectionsScheduleUseCaseRequest): Promise<RegisterConnectionsScheduleUseCaseResponse> {
     const existingAppointment =
-      await this.connectionsScheduleRepository.findByScheduleAndPatientId(
+      await this.connectionsScheduleRepository.findByScheduleAndPatientUserId(
         scheduleId,
         patientId,
       )
@@ -35,7 +35,7 @@ export class RegisterConnectionsScheduleUseCase {
 
     const newConnectionsSchedule =
       await this.connectionsScheduleRepository.createConnectionsSchedule({
-        patient: { connect: { id: patientId } },
+        patientUser: { connect: { id: patientId } },
         doctorSchedule: { connect: { id: scheduleId } },
       })
 

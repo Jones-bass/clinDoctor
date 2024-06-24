@@ -14,14 +14,14 @@ export class PrismaConnectionsScheduleRepository
     return createdConnectionsSchedule
   }
 
-  async findByScheduleAndPatientId(
+  async findByScheduleAndPatientUserId(
     scheduleId: string,
-    patientId: string,
+    patientUserId: string,
   ): Promise<ConnectionsSchedule | null> {
     const appointment = await prisma.connectionsSchedule.findFirst({
       where: {
         doctorScheduleId: scheduleId,
-        patientId,
+        patientUserId,
       },
     })
     return appointment

@@ -7,7 +7,7 @@ export async function ListPatientController(
 ) {
   const listPatientsUseCase = makeListPatientsUseCase()
 
-  const { patients } = await listPatientsUseCase.execute()
+  const { patientUsers } = await listPatientsUseCase.execute()
 
-  return reply.status(200).send({ patients })
+  return reply.status(200).send({ patientUsers })
 }

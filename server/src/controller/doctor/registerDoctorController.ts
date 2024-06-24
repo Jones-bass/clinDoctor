@@ -12,9 +12,11 @@ export async function RegisterDoctorController(
     price: z.number(),
     description: z.string(),
     experience: z.string(),
+    city: z.string(),
+    state: z.string(),
   })
 
-  const { name, description, experience, price, speciality } =
+  const { name, description, experience, price, speciality, city, state } =
     DoctorSchema.parse(request.body)
 
   try {
@@ -23,6 +25,8 @@ export async function RegisterDoctorController(
     const { doctor } = await registerUseCase.execute({
       name,
       description,
+      city,
+      state,
       experience,
       price,
       speciality,

@@ -4,7 +4,7 @@ export interface ConnectionsScheduleRepository {
   createConnectionsSchedule(
     data: Prisma.ConnectionsScheduleCreateInput,
   ): Promise<ConnectionsSchedule>
-  findByScheduleAndPatientId(
+  findByScheduleAndPatientUserId(
     scheduleId: string,
     patientId: string,
   ): Promise<ConnectionsSchedule | null>

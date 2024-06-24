@@ -10,24 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(uuid())
-  phone     String   @unique
-  email     String
-  password  String
-  patient   Patient?
-  createdAt DateTime @default(now())
-}
+model PatientUser {
+  id       String @id @default(uuid())
+  phone    String @unique
+  name     String
+  password String
 
-model Patient {
-  id                  String                @id @default(uuid())
-  userId              String                @unique
-  name                String
-  email               String
-  phone               String                @unique
-  user                User                  @relation(fields: [userId], references: [id])
-  createdAt           DateTime              @default(now())
+  email     String
+  createdAt DateTime @default(now())
+
   ConnectionsSchedule ConnectionsSchedule[]
+  UserToken           UserToken[]
+
+  @@map("patient_user")
 }
 
 model Doctor {
@@ -35,10 +30,14 @@ model Doctor {
   name           String           @unique
   speciality     String
   price          Float
+  city           String
+  state          String
   description    String
   experience     String
   createdAt      DateTime         @default(now())
   DoctorSchedule DoctorSchedule[]
+
+  @@map("doctor")
 }
 
 model DoctorSchedule {
@@ -49,13 +48,29 @@ model DoctorSchedule {
   doctor              Doctor                @relation(fields: [doctorId], references: [id])
   createdAt           DateTime              @default(now())
   ConnectionsSchedule ConnectionsSchedule[]
+
+  @@map("doctor_schedule")
 }
 
 model ConnectionsSchedule {
   id               String         @id @default(uuid())
-  patientId        String         @unique
+  patientUserId    String         @unique
   doctorScheduleId String         @unique
-  patient          Patient        @relation(fields: [patientId], references: [id])
+  patientUser      PatientUser    @relation(fields: [patientUserId], references: [id])
   doctorSchedule   DoctorSchedule @relation(fields: [doctorScheduleId], references: [id])
   createdAt        DateTime       @default(now())
+
+  @@map("connections_schedule")
+}
+
+model UserToken {
+  id            String   @id @default(uuid())
+  token         String   @default(uuid())
+  patientUserId String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @default(now())
+
+  patientUser PatientUser @relation(fields: [patientUserId], references: [id])
+
+  @@map("user_tokens")
 }
