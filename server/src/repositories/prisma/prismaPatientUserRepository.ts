@@ -1,4 +1,4 @@
-import { PatientUser, Prisma } from '@prisma/client'
+import { PatientUser, Prisma, UserToken } from '@prisma/client'
 import { prisma } from '../../lib/prisma'
 import { PatientUserRepository } from '../patientUserRepository'
 
@@ -8,16 +8,25 @@ export class PrismaPatientUserRepository implements PatientUserRepository {
     return createPatientUser
   }
 
-  async findByPhone(phone: string): Promise<PatientUser | null> {
-    const phoneId = await prisma.patientUser.findUnique({
-      where: { phone },
+  async findByEmail(email: string): Promise<PatientUser | null> {
+    const emailId = await prisma.patientUser.findUnique({
+      where: { email },
     })
 
-    return phoneId
+    return emailId
   }
 
   async findAllPatientUser(): Promise<PatientUser[]> {
     const patients = await prisma.patientUser.findMany()
     return patients
+  }
+
+  async createToken(data: { patientUserId: string }): Promise<UserToken> {
+    const patientToken = await prisma.userToken.create({
+      data: {
+        patientUserId: data.patientUserId,
+      },
+    })
+    return patientToken
   }
 }

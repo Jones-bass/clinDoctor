@@ -1,7 +1,8 @@
-import { Prisma, PatientUser } from '@prisma/client'
+import { Prisma, PatientUser, UserToken } from '@prisma/client'
 
 export interface PatientUserRepository {
-  findByPhone(phone: string): Promise<PatientUser | null>
+  findByEmail(email: string): Promise<PatientUser | null>
   findAllPatientUser(): Promise<PatientUser[]>
   create(data: Prisma.PatientUserCreateInput): Promise<PatientUser>
+  createToken(data: { patientUserId: string }): Promise<UserToken>
 }
