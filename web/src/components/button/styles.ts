@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const ButtonContainer = styled.button`
+interface ButtonContainerProps {
+  size: 'small' | 'medium' | 'large';
+}
+
+export const ButtonContainer = styled.button<ButtonContainerProps>`
   font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);
   font-weight: bold;
 
@@ -15,6 +19,28 @@ export const ButtonContainer = styled.button`
   cursor: pointer;
   
   transition: background-color 0.3s;
+
+  ${(props) =>
+    props.size === 'small' &&
+    css`
+      padding: 0.5rem 1rem;
+      font-size: clamp(0.25rem, 0.25vw + 0.25rem, 0.75rem);;
+    `}
+
+  ${(props) =>
+    props.size === 'medium' &&
+    css`
+      padding: 1.5%;
+      font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);;
+    `}
+
+  ${(props) =>
+    props.size === 'large' &&
+    css`
+      padding: 3%;
+      font-size: clamp(0.75rem, 0.75vw + 0.75rem, 1.5rem);
+
+    `}
 
   &:hover {
     background: ${(props) => props.theme.blue_dark};
