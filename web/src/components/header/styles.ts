@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.header`
   width: 100%;
   margin: 0 auto;
-  padding: 1% 1% 1% 0%;
+  padding: 1% 1% 1% 0%; 
 
   display: flex;
   justify-content: space-between;
@@ -22,8 +22,9 @@ export const HeaderContainer = styled.header`
     }
 
     .abas {
+      width: 20%;
       display: flex;
-      gap: 5%;
+      gap: 10%;
 
       a {
         color: ${(props) => props.theme.textTitle};
@@ -40,7 +41,7 @@ export const HeaderContainer = styled.header`
    
   @media (max-width: 480px) {
     nav {
-      width: 65%;
+      width: 50%;
   
     img {
       width: 25%

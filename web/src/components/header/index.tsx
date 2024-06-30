@@ -1,20 +1,24 @@
-import logo from '../../assets/logo.png';
+import { NavLink } from 'react-router-dom';
 import { Button } from '../button';
 import { HeaderContainer } from './styles';
+
+import logo from '../../assets/logo.png';
 
 export function Header() {
   return (
     <HeaderContainer>
       <nav>
-        <img src={logo} alt="Logo ClinDoctor" />
+        <NavLink to="/" title="inicio">
+          <img src={logo} alt="Logo ClinDoctor" />
+        </NavLink>
         <div className='abas'>
-          <a href="#agendamento">Serviços</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
+          <NavLink to="/serviços" title="serviços">Serviços</NavLink>
+          <NavLink to="/sobre" title="serviços">Sobre</NavLink>
+          <NavLink to="/contato" title="serviços">Contato</NavLink>
         </div>
       </nav>
-      <Button title='AGENDAMENTO'/>
-       
+      <Button title='AGENDAMENTO' />
+
     </HeaderContainer>
   );
 }

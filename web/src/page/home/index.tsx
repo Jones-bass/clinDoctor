@@ -1,7 +1,7 @@
 import { Main, Section, Logo, MedicImage, HighlightSpan, Description } from "./styles";
-import medic from "../assets/medico.jpg";
-import logo from "../assets/logo.png";
-import { Button } from "../components/button";
+import medic from "../../assets/medico.jpg";
+import logo from "../../assets/logo.png";
+import { Button } from "../../components/button";
 
 export function Home() {
   return (
@@ -9,7 +9,7 @@ export function Home() {
       <Section>
         <Logo src={logo} alt="logo clindoctor" />
         <HighlightSpan>
-          Proporcionando maior acesso a cuidados de saúde inovadores. Mais locais, mais vidas transformadas, tudo aqui.
+        ClinDoctor nos proporciona maior acesso a cuidados de saúde. Mais locais, mais vidas transformadas, tudo de forma mais acessível, tudo por aqui.
         </HighlightSpan>
         <Description>
           Tenha acesso a todos os nossos médicos
