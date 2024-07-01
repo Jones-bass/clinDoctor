@@ -26,7 +26,7 @@ export const Section = styled.section`
 
 export const Logo = styled.img`
   width: 50%;
-  margin-bottom: 1.5rem;
+  margin-top: 5%;
 
   @media (max-width: 768px) {
     width: 70%;
@@ -64,3 +64,87 @@ export const MedicImage = styled.img`
     width: 80%;
   }
 `;
+
+export const AboutContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 5%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+export const AboutColumn = styled.div`
+  flex: 1;
+  max-width: 50%;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+
+  h1 {
+    font-family: 'Baloo', sans-serif;
+    color: ${(props) => props.theme.blue};
+    font-size: clamp(2rem, 2vw + 2rem, 4rem);
+    margin-top: 0%;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  img {
+    border-radius: 8px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .primary-image {
+    width: 75%;
+    align-self: flex-end;
+    box-shadow: 2px 2px 5px ${(props) => props.theme.blue_dark};
+
+    @media (max-width: 768px) {
+      width: 100%;
+      align-self: center;
+    }
+  }
+
+  .secondary-image {
+    width: 40%;
+    background-color: ${(props) => props.theme.background};
+    padding-top: 1%;
+    padding-right: 1%;
+    margin-top: -30%;
+    align-self: flex-start;
+
+    @media (max-width: 768px) {
+      width: 60%;
+      margin-top: -10%;
+      align-self: center;
+    }
+  }
+`;
+
+export const CheckTextAbout = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(0.75rem, 0.75vw + 0.75rem, 1rem);
+  color: ${(props) => props.theme.blue_dark};
+  margin-bottom: 1rem;
+
+  
+  @media (max-width: 768px) {
+      padding: 2.5%;
+    }
+`;
+
+export const IconAbout = styled.div`
+  font-size: clamp(0.75rem, 0.75vw + 0.75rem, 1rem);
+  color: ${(props) => props.theme.primary};
+`;
+
+

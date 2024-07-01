@@ -23,23 +23,22 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   ${(props) =>
     props.size === 'small' &&
     css`
-      padding: 0.5rem 1rem;
+      padding: 1% 4% 1% 4%;
       font-size: clamp(0.25rem, 0.25vw + 0.25rem, 0.75rem);;
     `}
 
   ${(props) =>
     props.size === 'medium' &&
     css`
-      padding: 1.5%;
+      padding: 2% 3% 2% 3%;
       font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);;
     `}
 
   ${(props) =>
     props.size === 'large' &&
     css`
-      padding: 3%;
-      font-size: clamp(0.75rem, 0.75vw + 0.75rem, 1.5rem);
-
+      padding: 3% 5% 3% 5%;
+      font-size: clamp(1rem, 1vw + 1rem, 2rem);
     `}
 
   &:hover {

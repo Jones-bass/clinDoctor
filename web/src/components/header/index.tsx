@@ -17,7 +17,7 @@ export function Header() {
           <NavLink to="/contato" title="serviços">Contato</NavLink>
         </div>
       </nav>
-      <Button title='AGENDAMENTO' />
+      <Button title='AGENDAMENTO' size='medium'/>
 
     </HeaderContainer>
   );
