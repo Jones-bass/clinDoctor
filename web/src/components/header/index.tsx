@@ -3,6 +3,7 @@ import { Button } from '../button';
 import { HeaderContainer } from './styles';
 
 import logo from '../../assets/logo.png';
+import { BiUser } from 'react-icons/bi';
 
 export function Header() {
   return (
@@ -17,8 +18,11 @@ export function Header() {
           <NavLink to="/contato" title="serviços">Contato</NavLink>
         </div>
       </nav>
-      <Button title='AGENDAMENTO' size='medium'/>
-
+      <Button 
+        icon={BiUser}
+        title='Login' 
+        size='medium' 
+        />
     </HeaderContainer>
   );
 }

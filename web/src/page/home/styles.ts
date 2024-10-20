@@ -1,3 +1,4 @@
+import { darken } from 'polished';
 import styled from 'styled-components';
 
 export const Main = styled.main`
@@ -77,6 +78,27 @@ export const AboutContainer = styled.div`
 `;
 
 export const AboutColumn = styled.div`
+
+a {
+    color: ${(props) => props.theme.blue_dark}; 
+    display: block;
+    margin-top: 24px;
+    gap: 0px;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+
+  &:hover {
+      color: ${(props) => darken(0.1, props.theme.blue_dark)}; 
+    }
+
+  &:hover span {
+    transform: translateX(3px);
+    }
+  }
+
   flex: 1;
   max-width: 50%;
   

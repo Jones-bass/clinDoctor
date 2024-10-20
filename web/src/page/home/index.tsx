@@ -1,12 +1,13 @@
 import { Main, Section, Logo, MedicImage, HighlightSpan, Description, AboutColumn, AboutContainer, ImageContainer, CheckTextAbout, IconAbout } from "./styles";
 import { FaCheckCircle } from 'react-icons/fa';
 import { Button } from "../../components/button";
+import { Link } from "react-router-dom";
 
 import medic from "../../assets/medico.jpg";
 import logo from "../../assets/logo.png";
 
 import aboutImage1 from '../../assets/img/about-1.jpg';
-import aboutImage2 from '../../assets/img/about-2.jpg'; 
+import aboutImage2 from '../../assets/img/about-2.jpg';
 
 export function Home() {
   const dados = [
@@ -30,7 +31,7 @@ export function Home() {
       id: 5,
       title: "Atendimento Personalizado: Cada paciente é tratado de forma única, com planos de tratamento personalizados para suas necessidades específicas.",
     },
-    { 
+    {
       id: 6,
       title: "Ambiente Acolhedor: Criamos um ambiente acolhedor e seguro para que você se sinta confortável durante todo o seu tratamento.",
     },
@@ -41,20 +42,20 @@ export function Home() {
       <Section>
         <Logo src={logo} alt="logo clindoctor" />
         <HighlightSpan>
-        ClinDoctor nos proporciona maior acesso a cuidados de saúde. Mais locais, mais vidas transformadas, tudo de forma mais acessível, tudo por aqui.
+          ClinDoctor nos proporciona maior acesso a cuidados de saúde. Mais locais, mais vidas transformadas, tudo de forma mais acessível, tudo por aqui.
         </HighlightSpan>
         <Description>
           Tenha acesso a todos os nossos médicos
         </Description>
-        <Button size="large" title="Ver Médicos" />
+        <Button size="medium" title="Ver Médicos" />
       </Section>
       <MedicImage src={medic} alt="Foto de um médico" />
 
       <AboutContainer>
         <AboutColumn>
           <ImageContainer>
-            <img src={aboutImage1} alt="Doutores" className="primary-image"/>
-            <img src={aboutImage2} alt="Doutor" className="secondary-image"/>
+            <img src={aboutImage1} alt="Doutores" className="primary-image" />
+            <img src={aboutImage2} alt="Doutor" className="secondary-image" />
           </ImageContainer>
         </AboutColumn>
         <AboutColumn>
@@ -67,7 +68,9 @@ export function Home() {
               {item.title}
             </CheckTextAbout>
           ))}
-          <Button title="Leia Mais"/>
+          <Link to="/">
+            Leia Mais <span style={{ marginLeft: 3 }}>-&gt;</span>
+          </Link>
         </AboutColumn>
       </AboutContainer>
     </Main>

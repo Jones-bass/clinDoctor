@@ -5,40 +5,42 @@ interface ButtonContainerProps {
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
-  font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);
-  font-weight: bold;
-
+  background: ${(props) => props.theme.blue};
   color: ${(props) => props.theme.background};
 
-  background: ${(props) => props.theme.blue};
-
+  font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);
+  border: 0;
+  margin-top: 16px;
+  transition: background-color 0.2s;
   border-radius: 6px;
-  border: none;
-  
-  padding: 1.5%;
   cursor: pointer;
-  
+
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 6px;
+
   transition: background-color 0.3s;
 
   ${(props) =>
     props.size === 'small' &&
     css`
       padding: 1% 4% 1% 4%;
-      font-size: clamp(0.25rem, 0.25vw + 0.25rem, 0.75rem);;
+      font-size: clamp(0.25rem, 0.25vw + 0.25rem, 0.75rem);
     `}
 
   ${(props) =>
     props.size === 'medium' &&
     css`
-      padding: 2% 3% 2% 3%;
-      font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);;
+      padding: 16px;
+      font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);
     `}
 
   ${(props) =>
     props.size === 'large' &&
     css`
-      padding: 3% 5% 3% 5%;
-      font-size: clamp(1rem, 1vw + 1rem, 2rem);
+      padding: 16px;
+      width: 110%;
     `}
 
   &:hover {
@@ -53,5 +55,10 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
 
   &:hover span {
     transform: translateX(3px);
+  }
+
+  svg {
+    font-size: 1.5rem; 
+    margin-right: 6px;
   }
 `;
