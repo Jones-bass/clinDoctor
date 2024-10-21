@@ -11,7 +11,7 @@ export const Container = styled.div<{ hasError?: boolean }>`
   align-items: center;
 
   & + div {
-    margin-top: 8px;
+    margin-top: 14px;
   }
 
   input {

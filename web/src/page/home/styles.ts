@@ -23,15 +23,10 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: flex-start;
   margin-left: 2.5%;
-`;
 
-export const Logo = styled.img`
-  width: 50%;
-  margin-top: 5%;
-
-  @media (max-width: 768px) {
-    width: 70%;
-    margin: 0 auto 1.5rem;
+  span {
+    font-family: Calibri, sans-serif;
+    font-weight: 300;
   }
 `;
 
@@ -95,7 +90,8 @@ a {
     }
 
   &:hover span {
-    transform: translateX(3px);
+    transform: translateX(2px);
+    transition: transform 0.7s ease;
     }
   }
 

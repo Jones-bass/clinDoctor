@@ -1,3 +1,4 @@
+import { darken } from 'polished';
 import styled, { css } from 'styled-components';
 
 interface ButtonContainerProps {
@@ -12,7 +13,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   border: 0;
   margin-top: 16px;
   transition: background-color 0.2s;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
 
   display: flex; 
@@ -25,26 +26,29 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   ${(props) =>
     props.size === 'small' &&
     css`
-      padding: 1% 4% 1% 4%;
+      width: 80px;
+      height: 32px;
       font-size: clamp(0.25rem, 0.25vw + 0.25rem, 0.75rem);
     `}
 
   ${(props) =>
     props.size === 'medium' &&
     css`
-      padding: 16px;
+      width: 140px;
+      height: 50px;
       font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);
     `}
 
   ${(props) =>
     props.size === 'large' &&
     css`
-      padding: 16px;
+      width: 160px;
+      height: 60px;
       width: 110%;
     `}
 
   &:hover {
-    background: ${(props) => props.theme.blue_dark};
+    background: ${(props) => darken(0.1, props.theme.blue)};
   }
 
   span {

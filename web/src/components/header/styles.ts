@@ -11,13 +11,13 @@ export const HeaderContainer = styled.header`
   
   nav {
     padding: 1%;
-    width: 80%;
+    width: 75%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     img {
-      width: 10%; 
+      width: 15%; 
       height: auto;
     }
 
@@ -38,13 +38,29 @@ export const HeaderContainer = styled.header`
       }          
     }  
   } 
-   
-  @media (max-width: 480px) {
+
+  @media (max-width: 720px) {
     nav {
-      width: 50%;
+      width: 60%;
+      
+    img {
+      width: 30%
+      }
+    }
+  } 
+
+  @media (max-width: 480px) {
+    button {
+      margin-right: 5px;
+      width: 30%;
+      height: 50px;
+    }
+
+    nav {
+      width: 40%;
   
     img {
-      width: 25%
+      width: 70%
       }
     }
   } 

@@ -1,4 +1,4 @@
-import { FiMail, FiUser, FiLock } from 'react-icons/fi'
+import { FiMail, FiUser } from 'react-icons/fi'
 
 import logo from "../../assets/logo.png";
 
@@ -36,24 +36,11 @@ const createUserSchema = z.object({
       message: 'Formato de e-mail inválido',
     })
     .toLowerCase(),
-  password: z
-    .string()
-    .min(8, { message: 'A senha deve ter pelo menos 8 caracteres.' })
-    .regex(/[A-Z]/, {
-      message: 'A senha deve ter pelo menos uma letra maiúscula.',
-    })
-    .regex(/[a-z]/, {
-      message: 'A senha deve ter pelo menos uma letra minúscula.',
-    })
-    .regex(/[0-9]/, { message: 'A senha deve ter pelo menos um número.' })
-    .regex(/[^A-Za-z0-9]/, {
-      message: 'A senha deve ter pelo menos um caractere especial.',
-    }),
 })
 
 type CreateUserData = z.infer<typeof createUserSchema>
 
-export function SignUp() {
+export function SignIn() {
   const [loading, setLoading] = useState(false)
 
   const createUserForm = useForm<CreateUserData>({
@@ -82,15 +69,13 @@ export function SignUp() {
 
   return (
     <Container>
-      <Background />
-
       <Content>
         <AnimationContainer>
           <img src={logo} alt="Logo ClinDoctor" />
 
           <FormProvider {...createUserForm}>
             <form onSubmit={handleSubmit(handleOnSubmit)}>
-              <h2>Realize seu Cadastro</h2>
+              <h2>Acesse sua conta</h2>
 
               <Input
                 name="name"
@@ -104,28 +89,20 @@ export function SignUp() {
                 icon={FiMail}
                 errorMessage={errors?.email?.message ?? ''}
               />
-              <Input
-                name="password"
-                type="password"
-                placeholder="Senha"
-                icon={FiLock}
-                errorMessage={errors?.password?.message ?? ''}
-              />
               <Button size='large' title='Cadastrar' disabled={isSubmitting} type="submit">
                 {loading ? <Loading /> : 'Cadastrar'}
               </Button>
-
-              <a href="#">Esqueci minha senha</a>
-
             </form>
           </FormProvider>
 
-          <Link to="/login">
-            <span>&lt;-</span>
-            <p>Fazer login</p>
+          <Link to="/cadastro">
+            <span>-&gt;</span>
+            <p>Quero me cadastrar</p>
           </Link>
+        
         </AnimationContainer>
       </Content>
+      <Background />
     </Container>
   )
 }

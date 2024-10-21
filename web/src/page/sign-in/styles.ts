@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished'; 
 
-import backgroundImage from "../../assets/img/feature.jpg";
+import backgroundImage from "../../assets/img/carousel-2.jpg";
 
 const appearFromRight = keyframes`
 from {
@@ -55,14 +55,12 @@ export const AnimationContainer = styled.div`
   }
 
   a {
-    display: flex;
     color: ${(props) => props.theme.blue_dark}; 
+    display: block;
     gap: 0px;
     text-decoration: none;
-    margin-top: 14px;
     transition: color 0.2s;
-    text-align: center;
-    justify-content: center;
+    display: flex;
     align-items: center;
     cursor: pointer;
 
@@ -74,9 +72,11 @@ export const AnimationContainer = styled.div`
       color: ${(props) => darken(0.1, props.theme.blue_dark)}; 
     
     span {
-      transform: translateX(-2px);
+      transform: translateX(2px);
       transition: transform 0.7s ease;
     }
+
+  
     
     svg {
       margin-right: 6px;

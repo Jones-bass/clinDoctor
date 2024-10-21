@@ -9,12 +9,13 @@ interface ButtonProps {
   disabled?: boolean;
   type?: string;
   icon?: React.ComponentType<IconBaseProps>
+  onClick?: () => void; 
   children?: ReactNode; 
 }
 
-export function Button({ title, icon: Icon, children, size = 'medium' }: ButtonProps) {
+export function Button({ title, icon: Icon, children, onClick, size = 'medium' }: ButtonProps) {
   return (
-    <ButtonContainer size={size}>
+    <ButtonContainer size={size} onClick={onClick}>
       {Icon && <Icon size={22} />}
       {children || title}
     </ButtonContainer>

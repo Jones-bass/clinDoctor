@@ -1,10 +1,9 @@
-import { Main, Section, Logo, MedicImage, HighlightSpan, Description, AboutColumn, AboutContainer, ImageContainer, CheckTextAbout, IconAbout } from "./styles";
+import { Main, Section, MedicImage, HighlightSpan, Description, AboutColumn, AboutContainer, ImageContainer, CheckTextAbout, IconAbout } from "./styles";
 import { FaCheckCircle } from 'react-icons/fa';
 import { Button } from "../../components/button";
 import { Link } from "react-router-dom";
 
 import medic from "../../assets/medico.jpg";
-import logo from "../../assets/logo.png";
 
 import aboutImage1 from '../../assets/img/about-1.jpg';
 import aboutImage2 from '../../assets/img/about-2.jpg';
@@ -40,9 +39,9 @@ export function Home() {
   return (
     <Main>
       <Section>
-        <Logo src={logo} alt="logo clindoctor" />
         <HighlightSpan>
-          ClinDoctor nos proporciona maior acesso a cuidados de saúde. Mais locais, mais vidas transformadas, tudo de forma mais acessível, tudo por aqui.
+        <span>CLin</span>Doctor
+        nos proporciona maior acesso a cuidados de saúde. Mais locais, mais vidas transformadas, tudo de forma mais acessível, tudo por aqui.
         </HighlightSpan>
         <Description>
           Tenha acesso a todos os nossos médicos
