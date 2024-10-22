@@ -6,7 +6,7 @@ export const Main = styled.main`
     align-items: center;
     text-align: center;
     justify-content: center;
-    font-family: 'Baloo';
+    font-family: 'Roboto';
  
     font-size: clamp(1.5rem, 1.5vw + 1.5rem, 3rem);
     padding: 2%;
@@ -26,28 +26,6 @@ export const HeaderMain = styled.div`
     padding: 1rem;
   }
 `;
-
-export const Section = styled.section`
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 2.5%;
-
-  h1 {
-    width: 90%;
-    margin-bottom: 1rem;
-    font-family: 'Baloo';
- 
-    font-size: clamp(2rem, 2vw + 2rem, 4rem);
-    color: ${(props) => props.theme.background};
-  }
-`;
-
-export const Logo = styled.img`
-  width: 20%;
-`;
-
 
 export const Icon = styled.div`
   width: 80px;
@@ -100,9 +78,13 @@ export const ServicesBody = styled.div`
   padding: 7%;
   text-align: justify;
 
+  p {
+    font-family: 'Roboto';
+    font-weight: 100;
+  }
+
   h2 {
     margin: 0 0 18px 0;
-    font-family: 'Baloo';
  
     font-size: clamp(1rem, 1vw + 1rem, 2rem);
     letter-spacing: 0.06em;

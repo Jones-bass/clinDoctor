@@ -13,7 +13,7 @@ export function Router() {
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/serviços" element={<ServicePage />} />
+        <Route path="/servicos" element={<ServicePage />} />
         <Route path="/sobre" element={<AboutPage />} />
         <Route path="/contato" element={<ContactPage />} />
       </Route>

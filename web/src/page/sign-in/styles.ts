@@ -16,7 +16,7 @@ to {
 `;
 
 export const Container = styled.div`
-  h1 {
+  h2 {
     color: ${(props) => props.theme.textTitle}; 
   }
   
@@ -62,6 +62,9 @@ export const AnimationContainer = styled.div`
     transition: color 0.2s;
     display: flex;
     align-items: center;
+    
+    font-family: 'Inter';
+    
     cursor: pointer;
 
     p {
@@ -74,6 +77,7 @@ export const AnimationContainer = styled.div`
     span {
       transform: translateX(2px);
       transition: transform 0.7s ease;
+     
     }
 
   

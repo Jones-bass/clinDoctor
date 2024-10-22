@@ -1,4 +1,4 @@
-import { Main, Section, MedicImage, HighlightSpan, Description, AboutColumn, AboutContainer, ImageContainer, CheckTextAbout, IconAbout } from "./styles";
+import { Main, Section, MedicImage, HighlightSpan, Description, AboutColumn, AboutContainer, ImageContainer, CheckTextAbout, IconAbout, SpanText } from "./styles";
 import { FaCheckCircle } from 'react-icons/fa';
 import { Button } from "../../components/button";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import medic from "../../assets/medico.jpg";
 
 import aboutImage1 from '../../assets/img/about-1.jpg';
 import aboutImage2 from '../../assets/img/about-2.jpg';
+import { MedicalServices } from "../../components/medicalServices";
 
 export function Home() {
   const dados = [
@@ -39,8 +40,10 @@ export function Home() {
   return (
     <Main>
       <Section>
-        <HighlightSpan>
+        <SpanText>
         <span>CLin</span>Doctor
+        </SpanText>
+        <HighlightSpan>
         nos proporciona maior acesso a cuidados de saúde. Mais locais, mais vidas transformadas, tudo de forma mais acessível, tudo por aqui.
         </HighlightSpan>
         <Description>
@@ -72,6 +75,8 @@ export function Home() {
           </Link>
         </AboutColumn>
       </AboutContainer>
+
+      <MedicalServices/>
     </Main>
   );
 }

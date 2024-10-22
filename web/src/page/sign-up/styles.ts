@@ -16,7 +16,7 @@ to {
 `;
 
 export const Container = styled.div`
-  h1 {
+  h2 {
     color: ${(props) => props.theme.textTitle}; 
   }
   
@@ -64,6 +64,9 @@ export const AnimationContainer = styled.div`
     text-align: center;
     justify-content: center;
     align-items: center;
+
+    font-family: 'Inter';
+    
     cursor: pointer;
 
     p {

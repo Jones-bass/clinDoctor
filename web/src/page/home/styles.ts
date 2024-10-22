@@ -10,7 +10,7 @@ export const Main = styled.main`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  background: linear-gradient(100deg, rgba(10, 155, 105, 1) 50%, #0463FA 100%);
+  background: linear-gradient(-160deg, #0463FA 10%, #72EFE9 100%);
 
   @media (max-width: 768px) {
     padding: 1rem;
@@ -25,16 +25,18 @@ export const Section = styled.section`
   margin-left: 2.5%;
 
   span {
-    font-family: Calibri, sans-serif;
-    font-weight: 300;
+    font-family: 'Roboto';
+    font-weight: 100;
   }
 `;
 
 export const HighlightSpan = styled.h1`
   width: 90%;
   margin-bottom: 1rem;
-  font-family: 'Baloo';
- 
+  font-family: 'Roboto';
+  font-weight: 200;
+
+
   font-size: clamp(1.25rem, 1.25vw + 1.25rem, 2.5rem);
   text-align: justify;
   line-height: 1.2;
@@ -42,15 +44,38 @@ export const HighlightSpan = styled.h1`
   color: ${(props) => props.theme.background};
 `;
 
+export const SpanText = styled.h1`
+  color: ${(props) => props.theme.background};
+  font-size: clamp(2.65rem, 2.65vw + 2.65rem, 4.25rem);
+ 
+  margin: 0; 
+  padding: 0; 
+
+  animation: slideIn 1s ease-out;
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+`;
+
+
 export const Description = styled.p`
-  font-size: clamp(0.65rem, 0.65vw + 0.65rem, 1.25rem);
+  font-size: clamp(0.65rem, 0.65vw + 0.65rem, 1rem);
   margin-bottom: 1%;
 
   color: ${(props) => props.theme.background};
 `;
 
 export const MedicImage = styled.img`
-  width: 30%;
+  width: 25%;
+  margin-top: 5%;
   height: auto;
   border-radius: 8px;
   box-shadow: 10px 10px 10px 0px ${(props) => props.theme.textTitle};
@@ -65,7 +90,7 @@ export const AboutContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
-  margin-top: 5%;
+  margin-top: 10%;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -82,8 +107,11 @@ a {
     text-decoration: none;
     transition: color 0.2s;
     display: flex;
-    cursor: pointer;
     align-items: center;
+    
+    font-family: 'Inter';
+    
+    cursor: pointer;
 
   &:hover {
       color: ${(props) => darken(0.1, props.theme.blue_dark)}; 
@@ -103,7 +131,6 @@ a {
   }
 
   h1 {
-    font-family: 'Baloo', sans-serif;
     color: ${(props) => props.theme.blue};
     font-size: clamp(2rem, 2vw + 2rem, 4rem);
     margin-top: 0%;

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.header`
   width: 100%;
   margin: 0 auto;
-  padding: 1% 1% 1% 0%; 
 
   display: flex;
   justify-content: space-between;
@@ -17,7 +16,7 @@ export const HeaderContainer = styled.header`
     justify-content: space-between;
 
     img {
-      width: 15%; 
+      width: 10%; 
       height: auto;
     }
 
@@ -44,7 +43,7 @@ export const HeaderContainer = styled.header`
       width: 60%;
       
     img {
-      width: 30%
+      width: 20%
       }
     }
   } 
@@ -60,7 +59,7 @@ export const HeaderContainer = styled.header`
       width: 40%;
   
     img {
-      width: 70%
+      width: 50%
       }
     }
   } 

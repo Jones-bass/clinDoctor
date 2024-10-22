@@ -1,6 +1,5 @@
-import { Logo, HeaderMain, Section, Main, ServicesConatinerCars, ServicesContainerWrapper, ServicesContainer, ServicesBody, Icon } from "./styles";
+import { HeaderMain, Main, ServicesConatinerCars, ServicesContainerWrapper, ServicesContainer, ServicesBody, Icon } from "./styles";
 import { FaHeart, FaLungs, FaBrain, FaTooth, FaBone, FaFlask, FaUserMd, FaBaby } from 'react-icons/fa';
-import logo from "../../assets/logo.png";
 
 export function ServicePage() {
   const articles = [
@@ -62,12 +61,7 @@ export function ServicePage() {
 
   return (
     <Main>
-      <HeaderMain>
-        <Section>
-          <h1>Serviços</h1>
-          <Logo src={logo} alt="logo clindoctor" />
-        </Section>
-      </HeaderMain>
+      <HeaderMain />
 
       <h1>Soluções para cuidados de saúde</h1>
 
