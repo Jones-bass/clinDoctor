@@ -102,7 +102,6 @@ export const AboutColumn = styled.div`
 a {
     color: ${(props) => props.theme.blue_dark}; 
     display: block;
-    margin-top: 24px;
     gap: 0px;
     text-decoration: none;
     transition: color 0.2s;
@@ -113,15 +112,22 @@ a {
     
     cursor: pointer;
 
-  &:hover {
-      color: ${(props) => darken(0.1, props.theme.blue_dark)}; 
+    > p {
+      margin-right: 2px;
     }
 
-  &:hover span {
-    transform: translateX(2px);
-    transition: transform 0.7s ease;
+    &:hover {
+      color: ${(props) => darken(0.1, props.theme.blue_dark)}; 
+    
+    span {
+      transform: translateX(2px);
+      transition: transform 0.7s ease; 
     }
-  }
+
+    svg {
+      margin-right: 6px;
+    }
+  }}
 
   flex: 1;
   max-width: 50%;

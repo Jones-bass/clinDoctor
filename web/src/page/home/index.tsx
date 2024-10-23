@@ -8,6 +8,7 @@ import medic from "../../assets/medico.jpg";
 import aboutImage1 from '../../assets/img/about-1.jpg';
 import aboutImage2 from '../../assets/img/about-2.jpg';
 import { MedicalServices } from "../../components/medicalServices";
+import { ServicesSection } from "../../components/servicesSection";
 
 export function Home() {
   const dados = [
@@ -41,10 +42,10 @@ export function Home() {
     <Main>
       <Section>
         <SpanText>
-        <span>CLin</span>Doctor
+          <span>CLin</span>Doctor
         </SpanText>
         <HighlightSpan>
-        nos proporciona maior acesso a cuidados de saúde. Mais locais, mais vidas transformadas, tudo de forma mais acessível, tudo por aqui.
+          nos proporciona maior acesso a cuidados de saúde. Mais locais, mais vidas transformadas, tudo de forma mais acessível, tudo por aqui.
         </HighlightSpan>
         <Description>
           Tenha acesso a todos os nossos médicos
@@ -71,12 +72,14 @@ export function Home() {
             </CheckTextAbout>
           ))}
           <Link to="/">
-            Leia Mais <span style={{ marginLeft: 3 }}>-&gt;</span>
+            <p> Leia Mais </p>
+            <span>-&gt;</span>
           </Link>
         </AboutColumn>
       </AboutContainer>
 
-      <MedicalServices/>
+      <MedicalServices />
+      <ServicesSection />
     </Main>
   );
 }

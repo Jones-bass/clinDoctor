@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import backgroundImage from '../../assets/img/header-page.jpg';
 
+interface PropsType {
+  isVisible: boolean
+}
+
 export const Main = styled.main`
   > h1 {
     align-items: center;
@@ -12,8 +16,8 @@ export const Main = styled.main`
     padding: 2%;
     color: ${(props) => props.theme.blue};
   }
-`;
-
+    `;
+    
 export const HeaderMain = styled.div`
   flex: 1;
   width: 100%;
@@ -44,18 +48,22 @@ export const Icon = styled.div`
   font-size: 24px; 
 `;
 
-export const ServicesContainer = styled.section`
+export const ServicesContainer = styled.section<PropsType>`
   display: grid;
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: 24px;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 24px;
+
+
+  opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
+  transform: translateY(${({ isVisible }) => (isVisible ? '0' : '20%')});
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 `;
 
 export const ServicesConatinerCars = styled.article`
   padding: 10%;
-  background: ${(props) => props.theme.backgroundSecundary};
   border-radius: 16px;
   box-shadow: none;
 

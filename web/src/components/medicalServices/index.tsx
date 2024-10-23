@@ -1,4 +1,4 @@
-import { Description, ItemDescription, ItemTitle, ListContainer, ListItem, Section, Title } from './styles';
+import { ItemDescription, ItemTitle, ListContainer, ListItem, Section } from './styles';
 
 const servicesData = [
   {
@@ -22,10 +22,10 @@ const servicesData = [
 export function MedicalServices() {
   return (
     <Section>
-      <Title>Serviços Médicos</Title>
-      <Description>
+      <h1>Serviços Médicos</h1>
+      <p>
         Nosso Centro oferece a você e sua família uma gama completa de serviços de saúde.
-      </Description>
+      </p>
       <ListContainer>
         {servicesData.map((service, index) => (
           <ListItem key={index}>
