@@ -11,10 +11,11 @@ datasource db {
 }
 
 model PatientUser {
-  id       String @id @default(uuid())
-  name     String
-  phone    String
-  password String
+  id         String @id @default(uuid())
+  name       String
+  phone      String
+  password   String
+  avatar_url String
 
   email     String   @unique
   createdAt DateTime @default(now())

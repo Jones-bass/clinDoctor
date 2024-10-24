@@ -16,6 +16,7 @@ interface RegisterUseCaseRequest {
   phone: string
   password: string
   email: string
+  avatar_url: string
 }
 
 interface RegisterUseCaseResponse {
@@ -30,6 +31,7 @@ export class RegisterPatientUseCase {
     phone,
     password,
     email,
+    avatar_url
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     const patientWithSameEmail =
       await this.patientUserRepository.findByEmail(email)
@@ -43,6 +45,7 @@ export class RegisterPatientUseCase {
       name,
       email,
       phone,
+      avatar_url,
       password: password_hash,
     })
 

@@ -4,6 +4,7 @@ import { api } from '../services/api'
 interface User {
   id: string
   name: string
+  avatar_url: string
 }
 
 interface AuthState {
@@ -17,7 +18,8 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: User
+  user: User,
+  signOut(): void
   signIn(credentials: SignInCredentials): Promise<void>
 }
 
@@ -58,9 +60,16 @@ export const AuthProvider = ({ children }: IAuthContextData) => {
     setData({ token, user: patientUser });
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@GoBarber:token')
+    localStorage.removeItem('@GoBarber:user')
+
+    setData({} as AuthState)
+  }, [])
+
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

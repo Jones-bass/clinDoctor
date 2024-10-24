@@ -12,9 +12,10 @@ export async function RegisterPatientController(
     phone: z.string(),
     email: z.string(),
     password: z.string(),
+    avatar_url: z.string(),
   })
 
-  const { name, phone, password, email } = registerBodySchema.parse(
+  const { name, phone, password, email, avatar_url } = registerBodySchema.parse(
     request.body,
   )
 
@@ -26,6 +27,7 @@ export async function RegisterPatientController(
       name,
       password,
       email,
+      avatar_url
     })
 
     return reply.status(200).send({ userPatient })
