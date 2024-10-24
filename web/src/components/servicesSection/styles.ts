@@ -4,10 +4,17 @@ import { darken } from 'polished';
 import imageRight from "../../assets/img/pexels-photo-4031369.jpeg";
 import imageLeft from "../../assets/img/pexels-photo-3825502.jpeg";
 
+interface PropsType {
+  isVisible: boolean
+}
 
-export const Section = styled.section`
+export const Section = styled.section<PropsType>`
   width: 100%;
   background: ${(props) => darken(0.08, props.theme.blue_dark)};
+
+  opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
+  transform: translateY(${({ isVisible }) => (isVisible ? '0' : '20%')});
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 `;
 
 export const flipInContainer = keyframes`
@@ -27,7 +34,7 @@ export const LayoutWrap = styled.div`
   width: 100%;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* Muda a direção do layout para coluna em telas menores */
+    flex-direction: column; 
     align-items: center;
   }
 `;
@@ -168,7 +175,7 @@ export const ListItem = styled.div`
   }
 `;
 
-export const Icon = styled.span`
+export const Icon = styled.span<PropsType>`
   font-size: clamp(2rem, 2vw + 2rem, 4rem);
   color: ${(props) => props.theme.background};
 
@@ -176,6 +183,13 @@ export const Icon = styled.span`
   display: inline-block;
 
   cursor: pointer;
+
+
+  opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
+  transform: ${({ isVisible }) => (isVisible ? 'rotateY(0)' : 'rotateY(-180deg)')};
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+
+  animation: ${({ isVisible }) => isVisible ? flipInIcon : 'none'} 2s;
 
   :hover {
     color: ${(props) => darken(0.1, props.theme.background)};

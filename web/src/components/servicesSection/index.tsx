@@ -3,6 +3,7 @@ import { Container, Icon, ListItem, Section, ContentContainer, IconFaHeartbeat, 
 
 import { Link } from "react-router-dom";
 import { RiHeartPulseLine } from "react-icons/ri";
+import { useEffect, useRef, useState } from "react";
 
 const items = [
   {
@@ -28,8 +29,43 @@ const items = [
 ];
 
 export function ServicesSection() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    const threshold = 0.02
+
+    const options: IntersectionObserverInit = {
+      root: null,
+      rootMargin: '10px',
+      threshold,
+    }
+
+    function callback(entries: IntersectionObserverEntry[]) {
+      const [entry] = entries
+      const { intersectionRatio } = entry
+
+      if (intersectionRatio >= threshold) {
+        setIsVisible(true)
+      }
+    }
+
+    const observer = new IntersectionObserver(callback, options)
+    if (containerRef?.current) {
+      observer.observe(containerRef.current)
+    }
+
+    const containerRefCurrent = containerRef.current
+    return () => {
+      if (containerRefCurrent) {
+        observer.unobserve(containerRefCurrent)
+      }
+    }
+  }, [containerRef])
+
   return (
-    <Section>
+    <Section isVisible={isVisible} ref={containerRef}>
       <LayoutWrap>
         <LayoutCell>
           <ImageLeft />
@@ -60,7 +96,7 @@ export function ServicesSection() {
       <Container>
         {items.map((item, index) => (
           <ListItem key={index}>
-            <Icon>{item.icon}</Icon>
+            <Icon isVisible={isVisible} ref={containerRef}>{item.icon}</Icon>
             <h2>{item.title}</h2>
             <p>{item.text}</p>
           </ListItem>

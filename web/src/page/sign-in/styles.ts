@@ -76,12 +76,9 @@ export const AnimationContainer = styled.div`
     
     span {
       transform: translateX(2px);
-      transition: transform 0.7s ease;
-     
+      transition: transform 0.7s ease; 
     }
 
-  
-    
     svg {
       margin-right: 6px;
     }
