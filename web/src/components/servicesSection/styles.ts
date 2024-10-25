@@ -80,8 +80,6 @@ export const ContentContainer = styled.div`
 
   h1 {
     font-size: clamp(0.8rem, 1vw + 1rem, 2rem);
-    margin: 0;
-    padding: 0;
   }
 
   p {

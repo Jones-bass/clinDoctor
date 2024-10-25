@@ -16,14 +16,11 @@ body {
 }
 
 a {
-  text-decoration: none;
-  
+  text-decoration: none; 
 }
 
-
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h3, h3 {
+  padding: 0;
+  margin: 0;
 }
 `

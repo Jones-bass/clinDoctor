@@ -47,9 +47,6 @@ export const HighlightSpan = styled.h1`
 export const SpanText = styled.h1`
   color: ${(props) => props.theme.background};
   font-size: clamp(2.65rem, 2.65vw + 2.65rem, 4.25rem);
- 
-  margin: 0; 
-  padding: 0; 
 
   animation: slideIn 1s ease-out;
 

@@ -24,7 +24,6 @@ export const Section = styled.section`
   h1 {
     width: 90%;
     margin-bottom: 1rem;
-    font-family: 'Baloo';
  
     font-size: clamp(2rem, 2vw + 2rem, 4rem);
     color: ${(props) => props.theme.background};

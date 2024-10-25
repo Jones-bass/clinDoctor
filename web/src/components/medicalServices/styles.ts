@@ -12,9 +12,6 @@ export const Section = styled.div`
     font-family: 'Roboto';
     color: ${(props) => props.theme.blue_dark};
     font-size: clamp(0.8rem, 1.5vw + 1.5rem, 2.5rem);
-
-    padding: 0;
-    margin: 0;
   }
 
   p {
