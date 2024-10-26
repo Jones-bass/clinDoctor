@@ -19,8 +19,8 @@ export const Input = ({
 
   return (
     <>
-      <Container hasError={!!errorMessage}>
-        {Icon && <Icon size={18} />}
+      <Container>
+        {Icon && <Icon className='icon' size={18} />}
         <input {...register(name)} {...rest} />
       </Container>
       {errorMessage && <ErrorText>{errorMessage}</ErrorText>}

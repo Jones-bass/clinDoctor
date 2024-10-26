@@ -45,7 +45,7 @@ export const AnimationContainer = styled.div`
   animation: ${appearFromRight} 1s;
 
   form {
-    margin: 50px 0;
+    margin: 10% 0;
     width: 340px;
     text-align: center;
 
@@ -59,7 +59,7 @@ export const AnimationContainer = styled.div`
     color: ${(props) => props.theme.blue_dark}; 
     gap: 0px;
     text-decoration: none;
-    margin-top: 14px;
+    margin-top: 2%;
     transition: color 0.2s;
     text-align: center;
     justify-content: center;

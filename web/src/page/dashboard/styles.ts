@@ -1,4 +1,6 @@
 import { darken } from "polished";
+import { DayPicker } from "react-day-picker";
+
 import styled from "styled-components";
 
 export const Container = styled.div``;
@@ -57,7 +59,7 @@ export const Profile = styled.div`
     }
 
     a {
-      color: ${(props) => props.theme.blue};
+      color: ${(props) => props.theme.blue_dark};
 
       :hover {
         opacity: 0.8;
@@ -70,7 +72,18 @@ export const Content = styled.main`
   max-width: 1120px;
   margin: 0 auto;
 
-  display: flex;
+
+  .schedule-and-calendar {
+    display: flex; 
+    align-items: flex-start; 
+    gap: 24px; 
+  }
+
+  @media (max-width: 768px) {
+    .schedule-and-calendar {
+      flex-direction: column; 
+    }
+  }
 `;
 
 export const Schedule = styled.div`
@@ -78,13 +91,50 @@ export const Schedule = styled.div`
 
   flex: 1;
 
+  .icon {
+    font-size: clamp(4.8rem, 4vw + 4rem, 8rem);
+    color: ${(props) => (props.theme.text)};
+    margin-bottom: 0.5rem; 
+    opacity: 0.7; 
+  }
+
+  .no-appointments {
+    display: flex;
+
+    margin: 0 auto;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 1.2rem;
+    color: ${(props) => props.theme.text}; 
+    padding: 1rem 0;
+    animation: fadeIn 0.3s ease-in; 
+  }
+
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 auto;
+
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   h1 {
     font-size: clamp(0.8rem, 1vw + 1rem, 2rem);
     color: ${(props) => props.theme.gray}
   }
 
   p {
-    color: ${(props) => props.theme.blue};
+    color: ${(props) => props.theme.blue_dark};
     font-weight: 500;
 
     display: flex;
@@ -120,71 +170,175 @@ export const Section = styled.section`
   }
 `;
 
-export const Appointment = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-
-  background: ${(props) => darken(0.05, props.theme.backgroundSecundary)};
-
-  cursor: pointer;
-
+const ContainerAppointment = styled.div`
   :hover {
-    background: ${(props) => darken(0.1, props.theme.backgroundSecundary)};
-  }
-  
-  & + div {
-    margin-top: 16px;
-  }
-
-  div {
-    padding: 1%;
-    display: flex;
-    align-items: flex-start;
-    flex: 1;
-    border-radius: 8px;
-    
-    img {
-      margin-top: 0.5%;
-      width: 5%;
-      height: 5%;
-      border-radius: 50%;
+      background: ${(props) => darken(0.1, props.theme.backgroundSecundary)};
     }
 
-    @media (max-width: 768px) {
-      img {
-        width: 10%;
-        height: 10%;
-      }}
-    
-    .user-info {
-      margin-left: 1%;
+  > div {
+    background: ${(props) => props.theme.backgroundSecundary};
+    padding: 16px 24px;
+    margin-top: 24px;
+    position: relative;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+
+    span {
+      color: ${(props) => props.theme.blue_dark};      
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      font-size: 16px;
 
-      span {
-        color: ${(props) => props.theme.blue};
-        display: flex;
-        align-items: center;
-        font-size: clamp(0.6rem, 0.6vw + 0.6rem, 1rem);
-     
-
-        svg {
-          color: ${(props) => props.theme.blue_dark};
-          margin-right: 8px;
-        }
-      }
-
-      strong {
-        color: ${(props) => props.theme.textTitle};
-        font-size: clamp(0.75rem, 0.75vw + 0.75rem, 1.5rem);
-        font-family: 'Roboto';
-        font-weight: 300;
+      svg {
+        color: ${(props) => props.theme.blue_dark};      
+        margin-right: 2%;
       }
     }
   }
 `;
 
+export const NextAppointment = styled(ContainerAppointment)`
+    margin-top: 10%;
+
+    > strong {
+      color: ${(props) => props.theme.gray};
+      font-size: clamp(1rem, 1vw + 1rem, 2rem);
+    }
+
+    > strong:hover {
+      background-color: transparent;
+    }
+
+    > div {
+       &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 3px;
+        left: 0;
+        top: 0%;
+        background: ${(props) => props.theme.gray};
+    }
+    
+    img {
+      width: 12%;
+      height: 12%;
+      border-radius: 50%;
+      margin-right: 5%; 
+    }
+
+    .appointment-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+
+   strong {
+      color: ${(props) => props.theme.gray};      
+      margin-top: 2%; 
+      font-size: clamp(1rem, 1vw + 1rem, 2rem);
+      font-weight: bold;
+    }
+  }
+`;
+
+export const Appointment = styled(ContainerAppointment)`
+
+> div {
+     &::before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 2px;
+      left: 0;
+      top: 0%;
+      background: ${(props) => props.theme.blue_dark};
+    }
+
+  img {
+    width: 7%;
+    height: 7%;
+    border-radius: 50%;
+  }    
+
+  @media (max-width: 768px) {
+    img {
+      width: 10%;
+      height: 10%;
+    }}
+  
+  .user-info {
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      color: ${(props) => props.theme.blue_dark};
+      display: flex;
+      align-items: center;
+      font-size: clamp(0.5rem, 0.5vw + 0.5rem, 0.8rem);
+    
+      svg {
+        color: ${(props) => props.theme.blue_dark};
+        margin-right: 4%;
+      }
+    }
+
+    strong {
+      color: ${(props) => props.theme.textTitle};
+      font-size: clamp(0.75rem, 0.75vw + 0.75rem, 1.5rem);
+      font-family: 'Roboto';
+      font-weight: 300;
+    }
+  }
+}
+`;
+
+
+export const Calender = styled(DayPicker)`
+    color: ${(props) => darken(0.1, props.theme.gray)};
+
+ .rdp-caption_label {
+    color: ${(props) => darken(0.1, props.theme.gray)};
+    font-family: 'Roboto';
+  }
+  
+  .rdp-chevron {
+    display: inline-block;
+    fill: ${(props) => props.theme.blue};
+  }
+
+   .rdp-selected  {
+    color: ${(props) => props.theme.gray};
+  }
+
+  .rdp-selected .rdp-day_button {
+    color: ${(props) => props.theme.gray};
+    background-color: ${(props) => props.theme.backgroundSecundary};
+    border: none;
+  }
+
+  .rdp-today {
+    color: ${(props) => props.theme.blue};
+  }
+
+  .rdp-day:hover:not(.rdp-day_disabled) {
+    width: 7%;
+    height: 7%;
+    border-radius: 50%;
+    background: ${(props) => props.theme.backgroundSecundary};
+  }
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    width: 80%;
+  }
+`;
 
 
 

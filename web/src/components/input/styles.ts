@@ -1,14 +1,18 @@
 import styled from 'styled-components'
 
-export const Container = styled.div<{ hasError?: boolean }>`
+export const Container = styled.div`
   border-radius: 10px;
-  padding: 16px;
+  padding: 5% 0% 5% 0%;
   width: 100%;
-  border: 2px solid ${(props) => props.theme.textTitle};
+  border: 1px solid ${(props) => props.theme.textTitle};
   color: ${(props) => props.theme.textTitle};
 
   display: flex;
   align-items: center;
+
+  .icon {
+    margin-left: 2%;
+  }
 
   & + div {
     margin-top: 14px;

@@ -44,7 +44,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
     css`
       width: 160px;
       height: 60px;
-      width: 110%;
+      width: 100%;
     `}
 
   &:hover {
