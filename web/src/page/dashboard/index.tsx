@@ -8,20 +8,23 @@ import { useAuth } from "../../hook/auth";
 import { ptBR } from "date-fns/locale";
 
 import "react-day-picker/dist/style.css";
-import { GrSchedule, GrSchedulePlay } from "react-icons/gr";
 import { RiCalendarScheduleLine } from "react-icons/ri";
-
-interface MonthAvailabilityItem {
-  day: number;
-  available: boolean;
-}
+import { MdOutlineDateRange } from "react-icons/md";
+import { api } from "../../services/api";
 
 interface Appointments {
   id: string;
   date: string;
   hourFormatted: string;
+  doctorId: string;
+  dateFormatted: string;
   user: {
     name: string;
+    avatar_url: string;
+  };
+  doctor: {
+    name: string;
+    speciality: string;
     avatar_url: string;
   };
 }
@@ -30,8 +33,6 @@ export function Dashboard() {
   const { user, signOut } = useAuth();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [monthAvailability, setMonthAvailability] = useState<MonthAvailabilityItem[]>([]);
   const [appointments, setAppointments] = useState<Appointments[]>([]);
 
   const handleDateChange = useCallback((day: Date | undefined) => {
@@ -40,81 +41,43 @@ export function Dashboard() {
     }
   }, []);
 
-  const handleMonthChange = useCallback((month: Date) => {
-    setCurrentMonth(month);
-  }, []);
-
-  // Mocking month availability data
   useEffect(() => {
-    const mockMonthAvailability = [
-      { day: 5, available: false },
-      { day: 10, available: true },
-      { day: 15, available: false },
-      { day: 20, available: true },
-    ];
-    setMonthAvailability(mockMonthAvailability);
-  }, [currentMonth]);
+    async function fetchAppointments() {
+      try {
+        const response = await api.get(`/patients/${user.id}/schedules`);
+        const data = await response.data;
 
-  // Mocking appointments data
-  useEffect(() => {
-    const mockAppointments = [
-      {
-        id: "1",
-        date: new Date(new Date().setHours(8)).toISOString(),
-        hourFormatted: format(new Date(), "HH:mm"),
-        user: {
-          name: "John Doe",
-          avatar_url: "https://via.placeholder.com/150",
-        },
-      },
-      {
-        id: "2",
-        date: new Date(new Date().setHours(11)).toISOString(),
-        hourFormatted: format(new Date(new Date().setHours(14)), "HH:mm"),
-        user: {
-          name: "Jane Smith",
-          avatar_url: "https://github.com/Jones-bass.png",
-        },
-      },
-      {
-        id: "3",
-        date: new Date(new Date().setHours(15)).toISOString(),
-        hourFormatted: format(new Date(new Date().setHours(14)), "HH:mm"),
-        user: {
-          name: "Jane Smith",
-          avatar_url: "https://github.com/Jones-bass.png",
-        },
-      },
-      {
-        id: "4",
-        date: new Date(new Date().setHours(14)).toISOString(),
-        hourFormatted: format(new Date(new Date().setHours(11)), "HH:mm"),
-        user: {
-          name: "Jane Smith",
-          avatar_url: "https://github.com/Jones-bass.png",
-        },
-      },
-    ];
+        console.log("Dados da API:", data);
 
-    const appointmentsFormatted = mockAppointments.map((appointment) => ({
-      ...appointment,
-      hourFormatted: format(parseISO(appointment.date), "HH:mm"),
-    }));
+        if (data && Array.isArray(data.schedules)) {
+          const formattedAppointments = data.schedules.map((appointment: any) => ({
+            id: appointment.id,
+            date: appointment.time,
+            dateFormatted: format(parseISO(appointment.time), "dd 'de' MMMM", { locale: ptBR }),
+            hourFormatted: format(parseISO(appointment.time), "HH:mm"),
+            doctorId: appointment.doctorId,
+            user: {
+              name: user.name,
+              avatar_url: user.avatar_url,
+            },
+            doctor: {
+              name: appointment.doctor.name,
+              speciality: appointment.doctor.speciality,
+              avatar_url: appointment.doctor.avatar_url,
+            },
+          }));
 
-    setAppointments(appointmentsFormatted);
-  }, [selectedDate]);
+          setAppointments(formattedAppointments);
+        } else {
+          console.warn("Estrutura de dados inesperada:", data);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar agendamentos:", error);
+      }
+    }
 
-  const disabledDays = useMemo(() => {
-    const dates = monthAvailability
-      .filter((monthDay) => monthDay.available === false)
-      .map((monthDay) => {
-        const year = currentMonth.getFullYear();
-        const month = currentMonth.getMonth();
-        return new Date(year, month, monthDay.day);
-      });
-
-    return dates;
-  }, [currentMonth, monthAvailability]);
+    fetchAppointments();
+  }, [selectedDate, user.id, user.name, user.avatar_url]);
 
   const selectedDateAsText = useMemo(() => {
     return format(selectedDate, "'Dia' dd 'de' MMMM", {
@@ -169,7 +132,6 @@ export function Dashboard() {
             </div>
           </Profile>
 
-
           <button type="button" onClick={signOut}>
             <FiPower />
           </button>
@@ -188,46 +150,46 @@ export function Dashboard() {
 
             {isToday(selectedDate) && nextAppointment && (
               <NextAppointment>
-                <strong>Agendamento a seguir</strong>
+                <strong>Sua próximo agendamento é no dia {nextAppointment.dateFormatted} </strong>
                 <div>
-                  <img src={nextAppointment.user.avatar_url} alt={nextAppointment.user.name} />
-
+                  <img src={nextAppointment.doctor.avatar_url} alt={nextAppointment.doctor.name} />
                   <div className="appointment-details">
-                    <span>
-                      <FiClock />
-                      {nextAppointment.hourFormatted}
-                    </span>
-                    <strong>{nextAppointment.user.name}</strong>
+                    <div className="appointment-time-and-date">
+                      <span>
+                        <FiClock /> {nextAppointment.hourFormatted}
+                      </span>
+                      <span>
+                        <MdOutlineDateRange /> {nextAppointment.dateFormatted}
+                      </span>
+                    </div>
+                    <strong>{nextAppointment.doctor.name}</strong>
+                    <span>{nextAppointment.doctor.speciality}</span>
                   </div>
                 </div>
               </NextAppointment>
             )}
 
-            {morningAppointments.length === 0 && afternoonAppointments.length === 0 ? (
-                <div className="no-appointments">
+            {morningAppointments.length === 0 && afternoonAppointments.length === 0 && (!nextAppointment || !isToday(parseISO(nextAppointment.date))) ? (
+              <div className="no-appointments">
                 <RiCalendarScheduleLine className="icon" />
-                <span>Nenhum agendamento nesta data</span>
+                <span>Nenhum agendamento para hoje</span>
               </div>
             ) : (
               <>
                 {morningAppointments.length > 0 && (
                   <Section>
                     <strong>Manhã</strong>
-
-                    {morningAppointments.length === 0 && (
-                      <p>Nenhum agendamento no horário da manhã</p>
-                    )}
-
                     {morningAppointments.map((appointment) => (
                       <Appointment key={appointment.id}>
                         <div>
-                          <img src={appointment.user.avatar_url} alt={appointment.user.name} />
+                          <img src={appointment.doctor.avatar_url} alt={appointment.doctor.name} />
                           <div className="user-info">
                             <span>
                               <FiClock />
                               {appointment.hourFormatted}
                             </span>
-                            <strong>{appointment.user.name}</strong>
+                            <strong>{appointment.doctor.name}</strong>
+                            <span>{appointment.doctor.speciality}</span>
                           </div>
                         </div>
                       </Appointment>
@@ -236,24 +198,19 @@ export function Dashboard() {
                 )}
 
                 {afternoonAppointments.length > 0 && (
-
                   <Section>
                     <strong>Tarde</strong>
-
-                    {afternoonAppointments.length === 0 && (
-                      <p>Nenhum agendamento no horário da tarde</p>
-                    )}
-
                     {afternoonAppointments.map((appointment) => (
                       <Appointment key={appointment.id}>
                         <div>
-                          <img src={appointment.user.avatar_url} alt={appointment.user.name} />
+                          <img src={appointment.doctor.avatar_url} alt={appointment.user.name} />
                           <div className="user-info">
                             <span>
                               <FiClock />
                               {appointment.hourFormatted}
                             </span>
-                            <strong>{appointment.user.name}</strong>
+                            <strong>{appointment.doctor.name}</strong>
+                            <span>{appointment.doctor.speciality}</span>
                           </div>
                         </div>
                       </Appointment>
@@ -263,18 +220,17 @@ export function Dashboard() {
               </>
             )}
           </Schedule>
+
           <Calender
             mode="single"
             selected={selectedDate}
             onSelect={handleDateChange}
-            onMonthChange={handleMonthChange}
             locale={ptBR}
             modifiersClassNames={{
               available: 'available-day',
             }}
             disabled={[
               { dayOfWeek: [0, 6] },
-              ...disabledDays,
             ]}
             startMonth={new Date()}
           />

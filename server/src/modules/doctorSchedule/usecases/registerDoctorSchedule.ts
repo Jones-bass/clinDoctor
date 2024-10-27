@@ -1,18 +1,18 @@
-import { DoctorSchedule } from '@prisma/client'
-import { getHours, isBefore, startOfHour } from 'date-fns'
-import { DoctorScheduleRepository } from '../../../repositories/doctorScheduleRepository'
-import { PasteDateError } from '../../../errors/past-date-error'
-import { ConnectionsScheduleHourError } from '../../../errors/connectionsSchedule-hour-error'
-import { InvalidConnectionsScheduleTimeError } from '../../../errors/connectionsSchedule-hour-invalid-error'
+import { DoctorSchedule } from '@prisma/client';
+import { getHours, isBefore, startOfHour } from 'date-fns';
+import { DoctorScheduleRepository } from '../../../repositories/doctorScheduleRepository';
+import { PasteDateError } from '../../../errors/past-date-error';
+import { ScheduleHourError } from '../../../errors/schedule-hour-error';
+import { InvalidScheduleTimeError } from '../../../errors/schedule-hour-invalid-error';
 
 interface DoctorScheduleRequest {
-  doctorId: string
-  available: boolean
-  date: Date
+  doctorId: string;
+  patientUserId: string;
+  time: Date;
 }
 
 interface DoctorScheduleResponse {
-  doctorSchedule: DoctorSchedule
+  doctorSchedule: DoctorSchedule;
 }
 
 export class RegisterDoctorScheduleUseCase {
@@ -20,33 +20,38 @@ export class RegisterDoctorScheduleUseCase {
 
   async execute({
     doctorId,
-    date,
-    available,
+    patientUserId,
+    time,
   }: DoctorScheduleRequest): Promise<DoctorScheduleResponse> {
-    const scheduleDate = startOfHour(date)
+    const scheduleDate = startOfHour(time);
 
-    // Check if the appointment date is in the past
+    // Verificar se a data está no passado
     if (isBefore(scheduleDate, new Date())) {
-      throw new PasteDateError()
+      throw new PasteDateError();
     }
 
-    // Check if the appointment time is within working hours (8 AM to 5 PM)
+    // Verificar se o horário é entre 8h e 17h
     if (getHours(scheduleDate) < 8 || getHours(scheduleDate) >= 17) {
-      throw new ConnectionsScheduleHourError()
+      throw new ScheduleHourError();
+    }
+    
+     // Verificar se já existe um agendamento para o mesmo horário e data para o mesmo paciente
+     const existingSchedule = await this.scheduleRepository.findByPatientUserIdAndTime(
+      patientUserId,
+      scheduleDate
+    );
+
+    if (existingSchedule) {
+      throw new InvalidScheduleTimeError();
     }
 
-    const existingAppointment =
-      await this.scheduleRepository.findByDoctorAndDate(doctorId, scheduleDate)
-    if (existingAppointment) {
-      throw new InvalidConnectionsScheduleTimeError()
-    }
-
+    // Criação do agendamento com `patientUserId` incluído
     const createdSchedule = await this.scheduleRepository.create({
       doctorId,
-      available,
-      date: new Date(scheduleDate).toISOString(),
-    })
+      patientUserId,
+      time: scheduleDate.toISOString(),
+    });
 
-    return { doctorSchedule: createdSchedule }
+    return { doctorSchedule: createdSchedule };
   }
 }

@@ -2,9 +2,9 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 import { parseISO } from 'date-fns'
 import { makeRegisterDoctorScheduleUseCase } from '../usecases/factories/make-register-schedule-case'
-import { ConnectionsScheduleHourError } from '../../../errors/connectionsSchedule-hour-error'
-import { InvalidConnectionsScheduleTimeError } from '../../../errors/connectionsSchedule-hour-invalid-error'
 import { PasteDateError } from '../../../errors/past-date-error'
+import { ScheduleHourError } from '../../../errors/schedule-hour-error'
+import { InvalidScheduleTimeError } from '../../../errors/schedule-hour-invalid-error'
 
 export async function RegisterDoctorScheduleController(
   request: FastifyRequest,
@@ -12,31 +12,31 @@ export async function RegisterDoctorScheduleController(
 ) {
   const ScheduleSchema = z.object({
     doctorId: z.string(),
-    available: z.boolean(),
-    date: z.string(),
+    patientUserId: z.string(),
+    time: z.string(),
   })
 
-  const { doctorId, date, available } = ScheduleSchema.parse(request.body)
-  const parsedDate = parseISO(date)
+  const { doctorId, patientUserId, time } = ScheduleSchema.parse(request.body)
+  const parsedDate = parseISO(time)
 
   try {
     const scheduleUseCase = makeRegisterDoctorScheduleUseCase()
 
     const { doctorSchedule } = await scheduleUseCase.execute({
       doctorId,
-      available,
-      date: parsedDate,
+      patientUserId,
+      time: parsedDate,
     })
 
     return reply.status(200).send({ doctorSchedule })
   } catch (err) {
     if (err instanceof PasteDateError) {
       return reply.status(400).send({ message: err.message })
-    } else if (err instanceof ConnectionsScheduleHourError) {
+    } else if (err instanceof ScheduleHourError) {
       return reply.status(400).send({ message: err.message })
-    } else if (err instanceof InvalidConnectionsScheduleTimeError) {
+    } else if (err instanceof InvalidScheduleTimeError) {
       return reply.status(400).send({ message: err.message })
-    } else {
+      } else {
       return reply.status(500).send({ message: 'Internal Server Error' })
     }
   }

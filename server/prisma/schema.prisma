@@ -20,8 +20,8 @@ model PatientUser {
   email     String   @unique
   createdAt DateTime @default(now())
 
-  ConnectionsSchedule ConnectionsSchedule[]
-  UserToken           UserToken[]
+  UserToken      UserToken[]
+  DoctorSchedule DoctorSchedule[]
 
   @@map("patient_user")
 }
@@ -32,6 +32,7 @@ model Doctor {
   speciality     String
   price          Float
   city           String
+  avatar_url     String
   state          String
   description    String
   experience     String
@@ -42,26 +43,17 @@ model Doctor {
 }
 
 model DoctorSchedule {
-  id                  String                @id @default(uuid())
-  available           Boolean               @unique
-  doctorId            String
-  date                DateTime
-  doctor              Doctor                @relation(fields: [doctorId], references: [id])
-  createdAt           DateTime              @default(now())
-  ConnectionsSchedule ConnectionsSchedule[]
+  id            String   @id @default(uuid())
+  doctorId      String
+  time          DateTime
+  createdAt     DateTime @default(now())
+  patientUserId String
+
+  doctor Doctor @relation(fields: [doctorId], references: [id])
+
+  patientUser PatientUser @relation(fields: [patientUserId], references: [id])
 
   @@map("doctor_schedule")
-}
-
-model ConnectionsSchedule {
-  id               String         @id @default(uuid())
-  patientUserId    String         @unique
-  doctorScheduleId String         @unique
-  patientUser      PatientUser    @relation(fields: [patientUserId], references: [id])
-  doctorSchedule   DoctorSchedule @relation(fields: [doctorScheduleId], references: [id])
-  createdAt        DateTime       @default(now())
-
-  @@map("connections_schedule")
 }
 
 model UserToken {

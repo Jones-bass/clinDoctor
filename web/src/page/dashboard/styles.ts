@@ -233,10 +233,22 @@ export const NextAppointment = styled(ContainerAppointment)`
 
     .appointment-details {
       display: flex;
+      width: 70%;
       flex-direction: column;
       justify-content: center;
+      
+      span {
+        display: flex;
+        align-items: center;
+        text-align: start;
+        justify-content: start;
+        width: 30%;
+      }
+      
+      .appointment-time-and-date {
+        display: flex; 
+      }
     }
-
 
    strong {
       color: ${(props) => props.theme.gray};      

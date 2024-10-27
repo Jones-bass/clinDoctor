@@ -4,12 +4,13 @@ import { prisma } from '../src/lib/prisma'
 async function seed() {
   const doctors = [
     {
-      name: 'Jones Bass',
+      name: 'Aldiran Nascimento',
       speciality: 'Médico de família',
       price: 120,
       city: 'Tobias Barreto',
       state: 'Sergipe',
       experience: 'Mais de 10 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/men/1.jpg',
       description:
         'Fornece cuidados primários, trata uma ampla gama de problemas médicos e oferece cuidados preventivos. Eles gerenciam a saúde geral e encaminham os pacientes para especialistas, se necessário.',
     },
@@ -20,6 +21,7 @@ async function seed() {
       city: 'Tobias Barreto',
       state: 'Sergipe',
       experience: 'Mais de 15 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/women/2.jpg',
       description:
         'Especialista em doenças do coração e do sistema cardiovascular, trata condições como hipertensão e insuficiência cardíaca.',
     },
@@ -29,6 +31,7 @@ async function seed() {
       price: 100,
       city: 'Tobias Barreto',
       state: 'Sergipe',
+      avatar_url: 'https://randomuser.me/api/portraits/men/10.jpg',
       experience: 'Mais de 8 anos',
       description:
         'Diagnostica e trata doenças da pele, cabelos e unhas, como eczema, acne e câncer de pele.',
@@ -40,6 +43,7 @@ async function seed() {
       city: 'Tobias Barreto',
       state: 'Sergipe',
       experience: 'Mais de 12 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/women/4.jpg',
       description:
         'Cuida da saúde de bebês, crianças e adolescentes, desde consultas de rotina até o tratamento de doenças infantis.',
     },
@@ -50,6 +54,7 @@ async function seed() {
       city: 'Tobias Barreto',
       state: 'Sergipe',
       experience: 'Mais de 20 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/men/5.jpg',
       description:
         'Especialista em doenças e lesões do sistema músculo-esquelético, incluindo ossos, articulações, ligamentos, tendões e músculos.',
     },
@@ -60,6 +65,7 @@ async function seed() {
       city: 'Tobias Barreto',
       state: 'Sergipe',
       experience: 'Mais de 10 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/women/10.jpg',
       description:
         'Cuida da saúde do sistema reprodutor feminino e oferece acompanhamento durante a gestação e parto.',
     },
@@ -70,6 +76,7 @@ async function seed() {
       city: 'Aracaju',
       state: 'Sergipe',
       experience: 'Mais de 18 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/men/7.jpg',
       description:
         'Trata doenças do sistema nervoso, como epilepsia, esclerose múltipla, Parkinson e outras desordens neurológicas.',
     },
@@ -80,6 +87,7 @@ async function seed() {
       city: 'Lagarto',
       state: 'Sergipe',
       experience: 'Mais de 14 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/women/8.jpg',
       description:
         'Especialista em saúde mental, trata condições como depressão, ansiedade, transtorno bipolar e esquizofrenia.',
     },
@@ -90,6 +98,7 @@ async function seed() {
       city: 'Itabaiana',
       state: 'Sergipe',
       experience: 'Mais de 9 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/men/18.jpg',
       description:
         'Cuida da saúde ocular, diagnostica e trata problemas de visão, como miopia, hipermetropia e glaucoma.',
     },
@@ -100,6 +109,7 @@ async function seed() {
       city: 'Umbauba',
       state: 'Sergipe',
       experience: 'Mais de 13 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/women/19.jpg',
       description:
         'Trata distúrbios hormonais e metabólicos, como diabetes, doenças da tireoide e obesidade.',
     },
