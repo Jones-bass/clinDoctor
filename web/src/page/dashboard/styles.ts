@@ -59,7 +59,7 @@ export const Profile = styled.div`
     }
 
     a {
-      color: ${(props) => props.theme.blue_dark};
+      color: ${(props) => props.theme.blue_100};
 
       :hover {
         opacity: 0.8;
@@ -134,7 +134,7 @@ export const Schedule = styled.div`
   }
 
   p {
-    color: ${(props) => props.theme.blue_dark};
+    color: ${(props) => props.theme.blue_100};
     font-weight: 500;
 
     display: flex;
@@ -188,13 +188,13 @@ const ContainerAppointment = styled.div`
 
 
     span {
-      color: ${(props) => props.theme.blue_dark};      
+      color: ${(props) => props.theme.blue_100};      
       display: flex;
       align-items: center;
       font-size: 16px;
 
       svg {
-        color: ${(props) => props.theme.blue_dark};      
+        color: ${(props) => props.theme.blue_100};      
         margin-right: 2%;
       }
     }
@@ -269,7 +269,7 @@ export const Appointment = styled(ContainerAppointment)`
       width: 2px;
       left: 0;
       top: 0%;
-      background: ${(props) => props.theme.blue_dark};
+      background: ${(props) => props.theme.blue_100};
     }
 
   img {
@@ -290,13 +290,13 @@ export const Appointment = styled(ContainerAppointment)`
     flex-direction: column;
 
     span {
-      color: ${(props) => props.theme.blue_dark};
+      color: ${(props) => props.theme.blue_100};
       display: flex;
       align-items: center;
       font-size: clamp(0.5rem, 0.5vw + 0.5rem, 0.8rem);
     
       svg {
-        color: ${(props) => props.theme.blue_dark};
+        color: ${(props) => props.theme.blue_100};
         margin-right: 4%;
       }
     }

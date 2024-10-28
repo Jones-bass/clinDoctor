@@ -4,8 +4,8 @@ import styled from 'styled-components';
 export const Main = styled.main`
   max-width: calc(100vw - 16px);
   margin: 0 auto;
-  padding: 0 22px;
-  height: calc(100vh - 10rem);
+  padding: 0 20px;
+  height: calc(100vh - 15rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,7 +23,7 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: flex-start;
   margin-left: 2.5%;
-
+  
   span {
     font-family: 'Roboto';
     font-weight: 100;
@@ -32,10 +32,9 @@ export const Section = styled.section`
 
 export const HighlightSpan = styled.h1`
   width: 90%;
-  margin-bottom: 1rem;
+  margin-bottom: 8%;
   font-family: 'Roboto';
   font-weight: 200;
-
 
   font-size: clamp(1.25rem, 1.25vw + 1.25rem, 2.5rem);
   text-align: justify;
@@ -65,14 +64,16 @@ export const SpanText = styled.h1`
 
 export const Description = styled.p`
   font-size: clamp(0.65rem, 0.65vw + 0.65rem, 1rem);
-  margin-bottom: 1%;
+  color: ${(props) => props.theme.backgroundSecundary};
+ 
 
-  color: ${(props) => props.theme.background};
+  margin: 0;
+  padding: 0;
 `;
 
 export const MedicImage = styled.img`
   width: 25%;
-  margin-top: 5%;
+  margin-top: 2%;
   height: auto;
   border-radius: 8px;
   box-shadow: 10px 10px 10px 0px ${(props) => props.theme.textTitle};
@@ -97,7 +98,7 @@ export const AboutContainer = styled.div`
 export const AboutColumn = styled.div`
 
 a {
-    color: ${(props) => props.theme.blue_dark}; 
+    color: ${(props) => props.theme.blue_100}; 
     display: block;
     gap: 0px;
     text-decoration: none;
@@ -114,7 +115,7 @@ a {
     }
 
     &:hover {
-      color: ${(props) => darken(0.1, props.theme.blue_dark)}; 
+      color: ${(props) => darken(0.1, props.theme.blue_100)}; 
     
     span {
       transform: translateX(2px);
@@ -152,7 +153,7 @@ export const ImageContainer = styled.div`
   .primary-image {
     width: 75%;
     align-self: flex-end;
-    box-shadow: 2px 2px 5px ${(props) => props.theme.blue_dark};
+    box-shadow: 2px 2px 5px ${(props) => props.theme.blue_100};
 
     @media (max-width: 768px) {
       width: 100%;
@@ -181,7 +182,7 @@ export const CheckTextAbout = styled.div`
   align-items: center;
   gap: 1rem;
   font-size: clamp(0.75rem, 0.75vw + 0.75rem, 1rem);
-  color: ${(props) => props.theme.blue_dark};
+  color: ${(props) => props.theme.blue_100};
   margin-bottom: 1rem;
 
   

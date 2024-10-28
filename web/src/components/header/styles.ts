@@ -32,7 +32,7 @@ export const HeaderContainer = styled.header`
         transition: color 0.3s;
 
         &:hover {
-          color: ${(props) => props.theme.blue_dark};
+          color: ${(props) => props.theme.blue_100};
         }
       }          
     }  

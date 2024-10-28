@@ -55,7 +55,7 @@ export const AnimationContainer = styled.div`
   }
 
   a {
-    color: ${(props) => props.theme.blue_dark}; 
+    color: ${(props) => props.theme.blue_100}; 
     display: block;
     gap: 0px;
     text-decoration: none;
@@ -72,7 +72,7 @@ export const AnimationContainer = styled.div`
     }
 
     &:hover {
-      color: ${(props) => darken(0.1, props.theme.blue_dark)}; 
+      color: ${(props) => darken(0.1, props.theme.blue_100)}; 
     
     span {
       transform: translateX(2px);

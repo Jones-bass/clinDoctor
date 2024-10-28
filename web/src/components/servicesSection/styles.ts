@@ -10,7 +10,7 @@ interface PropsType {
 
 export const Section = styled.section<PropsType>`
   width: 100%;
-  background: ${(props) => darken(0.08, props.theme.blue_dark)};
+  background: ${(props) => darken(0.08, props.theme.blue_100)};
 
   opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
   transform: translateY(${({ isVisible }) => (isVisible ? '0' : '20%')});
@@ -72,7 +72,7 @@ export const ImageRight = styled(ImageContainer)`
 `;
 
 export const ContentContainer = styled.div`
-  background: ${(props) => props.theme.blue_dark};
+  background: ${(props) => props.theme.blue_100};
   color: ${(props) => props.theme.background};
   text-align: center;
   padding: 10%;

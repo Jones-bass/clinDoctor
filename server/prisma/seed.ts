@@ -113,6 +113,28 @@ async function seed() {
       description:
         'Trata distúrbios hormonais e metabólicos, como diabetes, doenças da tireoide e obesidade.',
     },
+    {
+      name: 'Renata Souza',
+      speciality: 'Ortopedista',
+      price: 135,
+      city: 'Itabaiana',
+      state: 'Sergipe',
+      experience: 'Mais de 12 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/women/23.jpg',
+      description:
+      'Especialista em doenças e lesões do sistema músculo-esquelético, incluindo ossos, articulações, ligamentos, tendões e músculos.',
+    },
+    {
+      name: 'Gabriela Teles',
+      speciality: 'Ginecologista',
+      price: 135,
+      city: 'Tobias Barreto',
+      state: 'Sergipe',
+      experience: 'Mais de 3 anos',
+      avatar_url: 'https://randomuser.me/api/portraits/women/29.jpg',
+      description:
+      'Cuida da saúde do sistema reprodutor feminino e oferece acompanhamento durante a gestação e parto.',
+    },
   ]
 
   for (const doctor of doctors) {

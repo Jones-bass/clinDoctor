@@ -10,7 +10,7 @@ export const Section = styled.div`
   h1 {
     font-weight: bold;
     font-family: 'Roboto';
-    color: ${(props) => props.theme.blue_dark};
+    color: ${(props) => props.theme.blue_100};
     font-size: clamp(0.8rem, 1.5vw + 1.5rem, 2.5rem);
   }
 
@@ -29,7 +29,7 @@ export const ListContainer = styled.div`
 export const ListItem = styled.div`
   width: 100%;
   max-width: 20%; 
-  border: 1px solid ${(props) => props.theme.blue_dark}; 
+  border: 1px solid ${(props) => props.theme.blue_100}; 
   border-radius: 12px; 
   padding: 15px;
   margin-bottom: 20px;
@@ -48,7 +48,7 @@ export const ListItem = styled.div`
 `;
 
 export const ItemTitle = styled.h4`
-  color: ${(props) => props.theme.blue_dark};
+  color: ${(props) => props.theme.blue_100};
 
   font-size: 24px;
   font-weight: 700;
