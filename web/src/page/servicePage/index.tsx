@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { HeaderMain, Main, ServicesConatinerCars, ServicesContainerWrapper, ServicesContainer, ServicesBody, Icon } from "./styles";
+import { Main, ServicesConatinerCars, ServicesContainerWrapper, ServicesContainer, ServicesBody, Icon, Section } from "./styles";
 import { FaHeart, FaLungs, FaBrain, FaTooth, FaBone, FaFlask, FaUserMd, FaBaby } from 'react-icons/fa';
 
 const articles = [
@@ -67,7 +67,6 @@ export function ServicePage() {
   useEffect(() => {
     const threshold = 0.02
 
-    // eslint-disable-next-line no-undef
     const options: IntersectionObserverInit = {
       root: null,
       rootMargin: '10px',
@@ -98,9 +97,13 @@ export function ServicePage() {
 
   return (
     <Main >
-      <HeaderMain />
+  
+      <Section>
+      <h1>Soluções</h1>
+      <p>para sua saúde</p>
+      </Section>
 
-      <h1>Soluções para cuidados de saúde</h1>
+
         <ServicesContainer isVisible={isVisible} ref={containerRef}>
           {articles.map((item) => (
             <ServicesConatinerCars key={item.id}>

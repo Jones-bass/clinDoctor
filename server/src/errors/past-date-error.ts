@@ -1,5 +1,5 @@
 export class PasteDateError extends Error {
   constructor() {
-    super('You cant create an appointment on a past date.')
+    super('Você não pode criar um compromisso em uma data anterior.')
   }
 }

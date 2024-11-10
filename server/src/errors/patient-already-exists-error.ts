@@ -1,5 +1,5 @@
 export class PatientAlreadyExistsError extends Error {
   constructor() {
-    super('There is already a patient with this phone number.')
+    super('Já existe um paciente com este número de telefone.')
   }
 }

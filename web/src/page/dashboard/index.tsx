@@ -12,7 +12,7 @@ import { RiCalendarScheduleLine } from "react-icons/ri";
 import { MdOutlineDateRange } from "react-icons/md";
 import { api } from "../../services/api";
 
-interface Appointments {
+export interface Appointments {
   id: string;
   date: string;
   hourFormatted: string;

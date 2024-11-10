@@ -13,8 +13,10 @@ import {
 } from "./styles";
 import { Button } from "../../components/button";
 import { Loading } from "../../components/loading";
+import { ConfirmAppointment } from "../../components/confirmAppointment";
+import { useNavigate } from "react-router-dom";
 
-interface Doctor {
+export interface PropsDoctor {
   id: string;
   name: string;
   speciality: string;
@@ -25,16 +27,23 @@ interface Doctor {
   description: string;
   experience: string;
   createdAt: string;
+  gender: 'Feminino' | 'Masculino';  
 }
 
 export function DoctorList() {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [doctors, setDoctors] = useState<PropsDoctor[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState<PropsDoctor | null>(null);
+
+  const navigate = useNavigate();
+  const userId = localStorage.getItem("userId")
 
   useEffect(() => {
     async function fetchDoctors() {
       try {
-        const response = await api.get<{ doctors: Doctor[] }>("/doctors-availability");
+        const response = await api.get<{ doctors: PropsDoctor[] }>("/doctors-availability");
         setDoctors(response.data.doctors);
       } catch (error) {
         console.error("Erro ao carregar os dados dos médicos:", error);
@@ -45,6 +54,22 @@ export function DoctorList() {
 
     fetchDoctors();
   }, []);
+
+  function handleSchedule(doctor: PropsDoctor) {
+    setSelectedDoctor(doctor);
+    setConfirmModalOpen(true);
+  }
+
+  function closeConfirmModal() {
+    setConfirmModalOpen(false);
+    setSelectedDoctor(null);
+  }
+
+  function confirmAppointment() {
+    if (selectedDoctor && userId) {
+      navigate('/dashboard')
+    }
+  }
 
   if (loading) {
     return <Loading />
@@ -83,7 +108,7 @@ export function DoctorList() {
                   <h2>{doctor.state}</h2>
                 </div>
               </DoctorStats>
-                <Button size="large" type="button" title="Agendar sua consulta" >
+                <Button size="large" type="button" title="Agendar sua consulta" onClick={() => handleSchedule(doctor)}>
                   {loading ? <Loading /> : 'Agendar sua consulta'}
 
                 </Button>
@@ -91,6 +116,12 @@ export function DoctorList() {
           </DoctorCard>
         ))}
       </DoctorsContainer>
+      <ConfirmAppointment
+        isOpen={isConfirmModalOpen}
+        onClose={closeConfirmModal}
+        confirmDoctorProps={selectedDoctor}
+        onConfirmDelete={confirmAppointment}
+      />
     </Main>
   );
 }

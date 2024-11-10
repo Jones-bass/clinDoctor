@@ -5,6 +5,7 @@
   - You are about to drop the column `available` on the `doctor_schedule` table. All the data in the column will be lost.
   - You are about to drop the column `date` on the `doctor_schedule` table. All the data in the column will be lost.
   - Added the required column `avatar_url` to the `doctor` table without a default value. This is not possible if the table is not empty.
+  - Added the required column `gender` to the `doctor` table without a default value. This is not possible if the table is not empty.
   - Added the required column `patientUserId` to the `doctor_schedule` table without a default value. This is not possible if the table is not empty.
   - Added the required column `time` to the `doctor_schedule` table without a default value. This is not possible if the table is not empty.
 
@@ -31,6 +32,7 @@ CREATE TABLE "new_doctor" (
     "city" TEXT NOT NULL,
     "avatar_url" TEXT NOT NULL,
     "state" TEXT NOT NULL,
+    "gender" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "experience" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP

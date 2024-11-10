@@ -15,9 +15,10 @@ export async function RegisterDoctorController(
     city: z.string(),
     state: z.string(),
     avatar_url: z.string(),
+    gender: z.string(),
   })
 
-  const { name, description, experience, price, speciality, avatar_url, city, state } =
+  const { name, description, experience, price, speciality, gender, avatar_url, city, state } =
     DoctorSchema.parse(request.body)
 
   try {
@@ -30,6 +31,7 @@ export async function RegisterDoctorController(
       state,
       experience,
       price,
+      gender,
       speciality,
       avatar_url
     })

@@ -1,5 +1,5 @@
 export class AppointmentAlreadyExistsError extends Error {
   constructor() {
-    super('Appointment already exists!')
+    super('O agendamento já existe!')
   }
 }

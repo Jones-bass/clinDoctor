@@ -9,6 +9,7 @@ async function seed() {
       price: 120,
       city: 'Tobias Barreto',
       state: 'Sergipe',
+      gender: 'Maculino', 
       experience: 'Mais de 10 anos',
       avatar_url: 'https://randomuser.me/api/portraits/men/1.jpg',
       description:
@@ -20,6 +21,7 @@ async function seed() {
       price: 150,
       city: 'Tobias Barreto',
       state: 'Sergipe',
+      gender: 'Feminino', 
       experience: 'Mais de 15 anos',
       avatar_url: 'https://randomuser.me/api/portraits/women/2.jpg',
       description:
@@ -31,6 +33,7 @@ async function seed() {
       price: 100,
       city: 'Tobias Barreto',
       state: 'Sergipe',
+      gender: 'Maculino', 
       avatar_url: 'https://randomuser.me/api/portraits/men/10.jpg',
       experience: 'Mais de 8 anos',
       description:
@@ -42,6 +45,7 @@ async function seed() {
       price: 130,
       city: 'Tobias Barreto',
       state: 'Sergipe',
+      gender: 'Feminino', 
       experience: 'Mais de 12 anos',
       avatar_url: 'https://randomuser.me/api/portraits/women/4.jpg',
       description:
@@ -53,6 +57,7 @@ async function seed() {
       price: 140,
       city: 'Tobias Barreto',
       state: 'Sergipe',
+      gender: 'Maculino', 
       experience: 'Mais de 20 anos',
       avatar_url: 'https://randomuser.me/api/portraits/men/5.jpg',
       description:
@@ -64,6 +69,7 @@ async function seed() {
       price: 125,
       city: 'Tobias Barreto',
       state: 'Sergipe',
+      gender: 'Feminino', 
       experience: 'Mais de 10 anos',
       avatar_url: 'https://randomuser.me/api/portraits/women/10.jpg',
       description:
@@ -75,6 +81,7 @@ async function seed() {
       price: 160,
       city: 'Aracaju',
       state: 'Sergipe',
+      gender: 'Maculino', 
       experience: 'Mais de 18 anos',
       avatar_url: 'https://randomuser.me/api/portraits/men/7.jpg',
       description:
@@ -86,6 +93,7 @@ async function seed() {
       price: 150,
       city: 'Lagarto',
       state: 'Sergipe',
+      gender: 'Feminino', 
       experience: 'Mais de 14 anos',
       avatar_url: 'https://randomuser.me/api/portraits/women/8.jpg',
       description:
@@ -97,6 +105,7 @@ async function seed() {
       price: 110,
       city: 'Itabaiana',
       state: 'Sergipe',
+      gender: 'Maculino', 
       experience: 'Mais de 9 anos',
       avatar_url: 'https://randomuser.me/api/portraits/men/18.jpg',
       description:
@@ -108,6 +117,7 @@ async function seed() {
       price: 135,
       city: 'Umbauba',
       state: 'Sergipe',
+      gender: 'Feminino', 
       experience: 'Mais de 13 anos',
       avatar_url: 'https://randomuser.me/api/portraits/women/19.jpg',
       description:
@@ -119,6 +129,7 @@ async function seed() {
       price: 135,
       city: 'Itabaiana',
       state: 'Sergipe',
+      gender: 'Feminino', 
       experience: 'Mais de 12 anos',
       avatar_url: 'https://randomuser.me/api/portraits/women/23.jpg',
       description:
@@ -130,6 +141,7 @@ async function seed() {
       price: 135,
       city: 'Tobias Barreto',
       state: 'Sergipe',
+      gender: 'Feminino', 
       experience: 'Mais de 3 anos',
       avatar_url: 'https://randomuser.me/api/portraits/women/29.jpg',
       description:

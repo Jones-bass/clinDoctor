@@ -10,6 +10,7 @@ interface RegisterUseCaseRequest {
   city: string
   state: string
   avatar_url: string
+  gender: string
 }
 
 interface RegisterUseCaseResponse {
@@ -28,6 +29,7 @@ export class RegisterDoctorUseCase {
     city,
     state,
     avatar_url,
+    gender,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     const createdDoctor = await this.doctorRepository.create({
       name,
@@ -37,7 +39,8 @@ export class RegisterDoctorUseCase {
       speciality,
       city,
       state,
-      avatar_url
+      avatar_url,
+      gender
     })
 
     return { doctor: createdDoctor }

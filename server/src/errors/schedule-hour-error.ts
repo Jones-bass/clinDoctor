@@ -1,5 +1,5 @@
 export class ScheduleHourError extends Error {
   constructor() {
-    super('You can only create schedule between 8am and 5pm.')
+    super('Você só pode criar agendamento entre 8h e 17h.')
   }
 }
