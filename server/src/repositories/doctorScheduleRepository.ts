@@ -19,6 +19,13 @@ export interface ScheduleWithDoctor {
   };
 }
 
+export interface DoctorScheduleAvailability {
+  doctorId: string;
+  day: string;
+  month: string;
+  year: string;
+}
+
 export interface DoctorScheduleRepository {
   create(data: Prisma.DoctorScheduleUncheckedCreateInput): Promise<DoctorSchedule>
   findByDoctorAndDate(doctorId: string, time: Date, patientUserId: string ): Promise<DoctorSchedule | null>
@@ -26,4 +33,5 @@ export interface DoctorScheduleRepository {
   updateAvailability( scheduleId: string ): Promise<DoctorSchedule>
   findSchedulesByPatientUserId(patientUserId: string): Promise<ScheduleWithDoctor[]>
   findByPatientUserIdAndTime(patientUserId: string, time: Date): Promise<DoctorSchedule | null>
+  findAllInDayFromDoctor({ doctorId, month, day, year }: DoctorScheduleAvailability): Promise<DoctorSchedule[]> 
 }

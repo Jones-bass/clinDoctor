@@ -7,7 +7,7 @@ export async function ListDoctorScheduleController(
 ) {
   const listDoctorScheduleUseCase = makeListDoctorScheduleUseCase()
 
-  const { doctorSchedule } = await listDoctorScheduleUseCase.execute()
+  const { appointmentDoctors } = await listDoctorScheduleUseCase.execute()
 
-  return reply.status(200).send({ doctorSchedule })
+  return reply.status(200).send({ appointmentDoctors })
 }

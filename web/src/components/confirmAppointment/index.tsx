@@ -55,12 +55,12 @@ export function ConfirmAppointment({ isOpen, onClose, confirmDoctorProps, onConf
       <Dialog.Portal>
         <Overlay />
         <Content>
-          <AiOutlineCalendar className='icon-appointment'/>
+          <AiOutlineCalendar className='icon-appointment' />
           <Dialog.Title>
             Agendamento
           </Dialog.Title>
           <Dialog.Description>
-              Vamos confirmar o agendamento com {confirmDoctorProps?.gender === 'Feminino' ? 'Doutora' : 'Doutor'} {confirmDoctorProps?.name}?
+            Vamos confirmar o agendamento com {confirmDoctorProps?.gender === 'Feminino' ? 'Doutora' : 'Doutor'} {confirmDoctorProps?.name}?
           </Dialog.Description>
 
           <DateInput

@@ -9,6 +9,7 @@ import { SignIn } from './page/sign-in'
 import { useAuth } from './hook/auth'
 import { Dashboard } from './page/dashboard'
 import { DoctorList } from './page/DoctorList'
+import { AvailibityDoctors } from './page/availibityDoctors'
 
 interface PrivateProps {
   children?: React.ReactNode
@@ -41,6 +42,7 @@ export function Router() {
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/medicos" element={<DoctorList />} />
+        <Route path="/detalhar-consulta/:doctorId" element={<AvailibityDoctors />} />
         <Route path="/servicos" element={<ServicePage />} />
         <Route path="/sobre" element={<AboutPage />} />
         <Route path="/contato" element={<ContactPage />} />

@@ -2,15 +2,15 @@ import { DoctorSchedule } from '@prisma/client'
 import { DoctorScheduleRepository } from '../../../repositories/doctorScheduleRepository'
 
 interface ListDoctorScheduleResponse {
-  doctorSchedule: DoctorSchedule[]
+  appointmentDoctors: DoctorSchedule[]
 }
 
 export class ListDoctorScheduleUseCase {
   constructor(private doctorScheduleRepository: DoctorScheduleRepository) {}
 
   async execute(): Promise<ListDoctorScheduleResponse> {
-    const doctorSchedule =
+    const appointmentDoctors =
       await this.doctorScheduleRepository.findAllDoctorSchedule()
-    return { doctorSchedule }
+    return { appointmentDoctors }
   }
 }

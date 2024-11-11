@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import {
   Main,
@@ -13,7 +13,6 @@ import {
 } from "./styles";
 import { Button } from "../../components/button";
 import { Loading } from "../../components/loading";
-import { ConfirmAppointment } from "../../components/confirmAppointment";
 import { useNavigate } from "react-router-dom";
 
 export interface PropsDoctor {
@@ -27,23 +26,18 @@ export interface PropsDoctor {
   description: string;
   experience: string;
   createdAt: string;
-  gender: 'Feminino' | 'Masculino';  
+  gender: 'Feminino' | 'Masculino';
 }
 
 export function DoctorList() {
+  const navigate = useNavigate();
   const [doctors, setDoctors] = useState<PropsDoctor[]>([]);
   const [loading, setLoading] = useState(true);
   
-  const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
-  const [selectedDoctor, setSelectedDoctor] = useState<PropsDoctor | null>(null);
-
-  const navigate = useNavigate();
-  const userId = localStorage.getItem("userId")
-
   useEffect(() => {
     async function fetchDoctors() {
       try {
-        const response = await api.get<{ doctors: PropsDoctor[] }>("/doctors-availability");
+        const response = await api.get<{ doctors: PropsDoctor[] }>("/list-doctor");
         setDoctors(response.data.doctors);
       } catch (error) {
         console.error("Erro ao carregar os dados dos médicos:", error);
@@ -55,31 +49,19 @@ export function DoctorList() {
     fetchDoctors();
   }, []);
 
-  function handleSchedule(doctor: PropsDoctor) {
-    setSelectedDoctor(doctor);
-    setConfirmModalOpen(true);
-  }
-
-  function closeConfirmModal() {
-    setConfirmModalOpen(false);
-    setSelectedDoctor(null);
-  }
-
-  function confirmAppointment() {
-    if (selectedDoctor && userId) {
-      navigate('/dashboard')
-    }
-  }
+  const handleOnSubmit = useCallback((doctorId: string) => {
+    navigate(`/detalhar-consulta/${doctorId}`);
+  }, [navigate]);
 
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
     <Main>
       <Section>
-      <h1>Nossos</h1>
-      <p>Doutores</p>
+        <h1>Nossos</h1>
+        <p>Doutores</p>
       </Section>
       <DoctorsContainer>
         {doctors.map((doctor) => (
@@ -108,20 +90,18 @@ export function DoctorList() {
                   <h2>{doctor.state}</h2>
                 </div>
               </DoctorStats>
-                <Button size="large" type="button" title="Agendar sua consulta" onClick={() => handleSchedule(doctor)}>
-                  {loading ? <Loading /> : 'Agendar sua consulta'}
-
-                </Button>
+              <Button
+                size="large"
+                type="button"
+                title="Detalhar consulta"
+                onClick={() => handleOnSubmit(doctor.id)}
+              >
+                Detalhar consulta
+              </Button>
             </DoctorInfoBox>
           </DoctorCard>
         ))}
       </DoctorsContainer>
-      <ConfirmAppointment
-        isOpen={isConfirmModalOpen}
-        onClose={closeConfirmModal}
-        confirmDoctorProps={selectedDoctor}
-        onConfirmDelete={confirmAppointment}
-      />
     </Main>
   );
 }

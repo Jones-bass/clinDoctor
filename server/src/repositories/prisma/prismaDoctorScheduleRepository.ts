@@ -1,6 +1,6 @@
 import { Prisma, DoctorSchedule } from '@prisma/client'
 import { prisma } from '../../lib/prisma'
-import { DoctorScheduleRepository, ScheduleWithDoctor } from '../doctorScheduleRepository'
+import { DoctorScheduleAvailability, DoctorScheduleRepository, ScheduleWithDoctor } from '../doctorScheduleRepository'
 
 export class PrismaDoctorScheduleRepository
   implements DoctorScheduleRepository
@@ -55,5 +55,19 @@ export class PrismaDoctorScheduleRepository
         time,
       },
     });
+  }
+
+  async findAllInDayFromDoctor({ doctorId, day, month, year }: DoctorScheduleAvailability): Promise<DoctorSchedule[]>  {
+    const findAllInMonthFromDoctor = await prisma.doctorSchedule.findMany({
+      where: {
+        doctorId,
+        time: { 
+          gte: new Date(Number(year), Number(month) - 1, Number(day), 0, 0, 0),
+          lt: new Date(Number(year), Number(month) - 1, Number(day), 23, 59, 59),
+        },
+      },
+    });
+    
+    return findAllInMonthFromDoctor
   }
 }
