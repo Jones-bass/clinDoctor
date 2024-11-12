@@ -68,7 +68,7 @@ export const DoctorCard = styled.div`
   justify-content: space-between; 
   
   &:hover {
-    transform: translateY(-0.7rem);
+    transform: translateY(-0.3rem);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 `;

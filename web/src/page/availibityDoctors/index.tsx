@@ -3,11 +3,12 @@ import { api } from "../../services/api";
 import { Loading } from "../../components/loading";
 import { ConfirmAppointment } from "../../components/confirmAppointment";
 import { useParams, useNavigate } from "react-router-dom";
-import { DoctorAvatar, DoctorBio, DoctorCard, DoctorDetails, DoctorInfoBox, DoctorStats } from "./styles";
+import { AvailabilityList, CalenderWrapper, Content, DoctorAvatar, DoctorBio, DoctorCard, DoctorDetails, DoctorInfoBox, DoctorStats } from "./styles";
 import { Button } from "../../components/button";
 import { toast } from "react-toastify";
-import { Calender } from "../dashboard/styles";
 import { ptBR } from "date-fns/locale";
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { Calender } from "../dashboard/styles";
 
 export interface PropsDoctor {
   id: string;
@@ -74,7 +75,7 @@ export function AvailibityDoctors() {
       });
     }
   }, [doctorId, selectedDate]);
-  
+
 
   function handleSchedule(doctor: PropsDoctor) {
     setSelectedDoctor(doctor);
@@ -97,7 +98,7 @@ export function AvailibityDoctors() {
   }
 
   return (
-    <div>
+    <Content>
       {doctors.map((doctor) => (
         <DoctorCard key={doctor.id}>
           <DoctorAvatar>
@@ -125,43 +126,55 @@ export function AvailibityDoctors() {
               </div>
             </DoctorStats>
           </DoctorInfoBox>
+
           <Button size="large" type="button" title="Agendar sua consulta" onClick={() => handleSchedule(doctor)}>
             {loading ? <Loading /> : 'Agendar sua consulta'}
           </Button>
-
-          <Calender
-            mode="single"
-            selected={selectedDate}
-            onSelect={handleDateChange}
-            locale={ptBR}
-            modifiersClassNames={{
-              available: 'available-day', // Class para marcar os dias disponíveis
-            }}
-            disabled={[
-              { dayOfWeek: [0, 6] }, // Desabilitar sábado e domingo, se necessário
-            ]}
-            startMonth={new Date()}
-          />
-
-          <div>
+        </DoctorCard>
+      ))}
+      <CalenderWrapper>
+        <Calender
+          mode="single"
+          selected={selectedDate}
+          onSelect={handleDateChange}
+          locale={ptBR}
+          modifiersClassNames={{
+            available: 'available-day', // Class para marcar os dias disponíveis
+          }}
+          disabled={[
+            { dayOfWeek: [0, 6] }, // Desabilitar sábado e domingo, se necessário
+          ]}
+          startMonth={new Date()}
+        />
+        <div>
+          <AvailabilityList>
             <h3>Disponibilidade de Horários:</h3>
             <ul>
               {availability.map((item) => (
                 <li key={item.hour}>
-                  <span>{item.hour}:00 - </span>
-                  <span>{item.available ? "Disponível" : "Indisponível"}</span>
+                  <span>{item.hour}:00h </span>
+                  <span className={item.available ? "available" : "unavailable"}>
+                    {item.available ? (
+                      <AiOutlineCheck color="green" /> 
+                    ) : (
+                      <AiOutlineClose color="red" /> 
+                    )}
+                    {item.available ? "Disponível" : "Indisponível"}
+                  </span>
                 </li>
               ))}
             </ul>
-          </div>
-        </DoctorCard>
-      ))}
+          </AvailabilityList>
+
+        </div>
+      </CalenderWrapper>
+
       <ConfirmAppointment
         isOpen={isConfirmModalOpen}
         onClose={closeConfirmModal}
         confirmDoctorProps={selectedDoctor}
         onConfirmDelete={confirmAppointment}
       />
-    </div>
+    </Content>
   );
 }

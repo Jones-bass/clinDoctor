@@ -5,7 +5,6 @@ interface RequestParams {
   doctorId: string
 }
 
-
 export async function ListDoctorsController(
   request: FastifyRequest,
   reply: FastifyReply,

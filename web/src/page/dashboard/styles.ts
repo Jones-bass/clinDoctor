@@ -313,7 +313,13 @@ export const Appointment = styled(ContainerAppointment)`
 
 
 export const Calender = styled(DayPicker)`
-    color: ${(props) => darken(0.1, props.theme.gray)};
+  color: ${(props) => darken(0.1, props.theme.gray)};
+  
+  .rdp-month_grid {
+    width: 50%;
+    font-size: 12px;
+    max-width: 5px;
+  }
 
  .rdp-caption_label {
     color: ${(props) => darken(0.1, props.theme.gray)};

@@ -1,4 +1,4 @@
-import { getHours, isAfter } from 'date-fns'
+import { addHours, getHours, isAfter } from 'date-fns'
 import { DoctorScheduleRepository } from '../../../repositories/doctorScheduleRepository'
 
 interface IRequest {
@@ -39,7 +39,7 @@ export class ListDoctorDayAvailabilityUseCase {
       (_, index) => index + hourStart
     )
 
-    const numberOfDaysInMonth = new Date()
+    const minAvailableDate = addHours(new Date(), 3)
 
     const availability = eachHourArray.map((hour) => {
       const hasAppointmentInHour = appointments.find(
@@ -50,7 +50,7 @@ export class ListDoctorDayAvailabilityUseCase {
 
       return {
         hour,
-        available: !hasAppointmentInHour && isAfter(compareDate, numberOfDaysInMonth),
+        available: !hasAppointmentInHour && isAfter(compareDate, minAvailableDate),
       }
     })
 
