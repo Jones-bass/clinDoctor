@@ -1,7 +1,7 @@
-import styled, { keyframes } from 'styled-components';
-import { darken } from 'polished'; 
+import styled, { keyframes } from 'styled-components'
+import { darken } from 'polished'
 
-import backgroundImage from "../../assets/img/feature.jpg";
+import backgroundImage from '../../assets/img/feature.jpg'
 
 const appearFromRight = keyframes`
 from {
@@ -13,17 +13,17 @@ to {
   opacity: 1;
   transform: translateX(0);
 }
-`;
+`
 
 export const Container = styled.div`
   h2 {
-    color: ${(props) => props.theme.textTitle}; 
+    color: ${(props) => props.theme.textTitle};
   }
-  
+
   height: 100vh;
   display: flex;
   align-items: stretch;
-`;
+`
 
 export const Content = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ export const Content = styled.div`
   place-content: center;
   width: 100%;
   max-width: 700px;
-`;
+`
 
 export const AnimationContainer = styled.div`
   img {
@@ -56,7 +56,7 @@ export const AnimationContainer = styled.div`
 
   a {
     display: flex;
-    color: ${(props) => props.theme.blue_100}; 
+    color: ${(props) => props.theme.blue_100};
     gap: 0px;
     text-decoration: none;
     margin-top: 2%;
@@ -66,7 +66,7 @@ export const AnimationContainer = styled.div`
     align-items: center;
 
     font-family: 'Inter';
-    
+
     cursor: pointer;
 
     p {
@@ -74,21 +74,22 @@ export const AnimationContainer = styled.div`
     }
 
     &:hover {
-      color: ${(props) => darken(0.1, props.theme.blue_100)}; 
-    
-    span {
-      transform: translateX(-2px);
-      transition: transform 0.7s ease;
+      color: ${(props) => darken(0.1, props.theme.blue_100)};
+
+      span {
+        transform: translateX(-2px);
+        transition: transform 0.7s ease;
+      }
+
+      svg {
+        margin-right: 6px;
+      }
     }
-    
-    svg {
-      margin-right: 6px;
-    }
-  }}
-`;
+  }
+`
 
 export const Background = styled.div`
   flex: 1;
   background: url(${backgroundImage}) no-repeat center;
   background-size: cover;
-`;
+`

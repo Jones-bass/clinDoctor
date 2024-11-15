@@ -6,7 +6,6 @@ body {
   font-family: 'Roboto', sans-serif;
   font-optical-sizing: auto;
  
-  max-width: 1480px;
   margin: 0 auto;
   
   font-synthesis: none;

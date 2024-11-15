@@ -1,100 +1,115 @@
-import { useCallback, useEffect, useState } from "react";
-import { api } from "../../services/api";
-import { Loading } from "../../components/loading";
-import { ConfirmAppointment } from "../../components/confirmAppointment";
-import { useParams, useNavigate } from "react-router-dom";
-import { AvailabilityList, CalenderWrapper, Content, DoctorAvatar, DoctorBio, DoctorCard, DoctorDetails, DoctorInfoBox, DoctorStats } from "./styles";
-import { Button } from "../../components/button";
-import { toast } from "react-toastify";
-import { ptBR } from "date-fns/locale";
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import { Calender } from "../dashboard/styles";
+import { useCallback, useEffect, useState } from 'react'
+import { api } from '../../services/api'
+import { Loading } from '../../components/loading'
+import { ConfirmAppointment } from '../../components/confirmAppointment'
+import { useParams, useNavigate } from 'react-router-dom'
+import {
+  AvailabilityList,
+  CalenderWrapper,
+  Content,
+  DoctorAvatar,
+  DoctorBio,
+  DoctorCard,
+  DoctorDetails,
+  DoctorInfoBox,
+  DoctorStats,
+} from './styles'
+import { Button } from '../../components/button'
+import { toast } from 'react-toastify'
+import { ptBR } from 'date-fns/locale'
+import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai'
+import { Calender } from '../dashboard/styles'
+
+import { TbClockHour7 } from 'react-icons/tb'
 
 export interface PropsDoctor {
-  id: string;
-  name: string;
-  speciality: string;
-  price: number;
-  city: string;
-  state: string;
-  avatar_url: string;
-  description: string;
-  experience: string;
-  createdAt: string;
-  gender: 'Feminino' | 'Masculino';
+  id: string
+  name: string
+  speciality: string
+  price: number
+  city: string
+  state: string
+  avatar_url: string
+  description: string
+  experience: string
+  createdAt: string
+  gender: 'Feminino' | 'Masculino'
 }
 
 interface Availability {
-  hour: number;
-  available: boolean;
+  hour: number
+  available: boolean
 }
 
 export function AvailibityDoctors() {
-  const { doctorId } = useParams<{ doctorId: string }>();
-  const [doctors, setDoctors] = useState<PropsDoctor[]>([]);
-  const [availability, setAvailability] = useState<Availability[]>([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedDoctor, setSelectedDoctor] = useState<PropsDoctor | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
-  const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
+  const { doctorId } = useParams<{ doctorId: string }>()
+  const [doctors, setDoctors] = useState<PropsDoctor[]>([])
+  const [availability, setAvailability] = useState<Availability[]>([])
+  const [selectedDate, setSelectedDate] = useState(new Date())
+  const [selectedDoctor, setSelectedDoctor] = useState<PropsDoctor | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [isConfirmModalOpen, setConfirmModalOpen] = useState(false)
+  const navigate = useNavigate()
+  const userId = localStorage.getItem('userId')
 
   const handleDateChange = useCallback((day: Date | undefined) => {
     if (day) {
-      setSelectedDate(day);
+      setSelectedDate(day)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     async function fetchDoctor() {
       try {
-        const response = await api.get<{ doctor: { doctors: PropsDoctor[] } }>(`/list-doctor/${doctorId}`);
-        setDoctors(response.data.doctor.doctors);
+        const response = await api.get<{ doctor: { doctors: PropsDoctor[] } }>(
+          `/list-doctor/${doctorId}`,
+        )
+        setDoctors(response.data.doctor.doctors)
       } catch (error) {
-        toast.error("Erro ao carregar os dados do médico:");
-        console.error("Erro ao carregar os dados do médico:", error);
+        toast.error('Erro ao carregar os dados do médico:')
+        console.error('Erro ao carregar os dados do médico:', error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     }
 
-    fetchDoctor();
-  }, [doctorId]);
+    fetchDoctor()
+  }, [doctorId])
 
   useEffect(() => {
     if (doctorId) {
-      api.get(`/doctor/${doctorId}/day-availability`, {
-        params: {
-          year: selectedDate.getFullYear(),
-          month: selectedDate.getMonth() + 1,
-          day: selectedDate.getDate(),
-        },
-      }).then((response) => {
-        setAvailability(response.data.availability);
-      });
+      api
+        .get(`/doctor/${doctorId}/day-availability`, {
+          params: {
+            year: selectedDate.getFullYear(),
+            month: selectedDate.getMonth() + 1,
+            day: selectedDate.getDate(),
+          },
+        })
+        .then((response) => {
+          setAvailability(response.data.availability)
+        })
     }
-  }, [doctorId, selectedDate]);
-
+  }, [doctorId, selectedDate])
 
   function handleSchedule(doctor: PropsDoctor) {
-    setSelectedDoctor(doctor);
-    setConfirmModalOpen(true);
+    setSelectedDoctor(doctor)
+    setConfirmModalOpen(true)
   }
 
   function closeConfirmModal() {
-    setConfirmModalOpen(false);
-    setSelectedDoctor(null);
+    setConfirmModalOpen(false)
+    setSelectedDoctor(null)
   }
 
   function confirmAppointment() {
     if (selectedDoctor && userId) {
-      navigate('/dashboard');
+      navigate('/dashboard')
     }
   }
 
   if (loading) {
-    return <Loading />;
+    return <Loading />
   }
 
   return (
@@ -127,7 +142,12 @@ export function AvailibityDoctors() {
             </DoctorStats>
           </DoctorInfoBox>
 
-          <Button size="large" type="button" title="Agendar sua consulta" onClick={() => handleSchedule(doctor)}>
+          <Button
+            size="large"
+            type="button"
+            title="Agendar sua consulta"
+            onClick={() => handleSchedule(doctor)}
+          >
             {loading ? <Loading /> : 'Agendar sua consulta'}
           </Button>
         </DoctorCard>
@@ -152,20 +172,23 @@ export function AvailibityDoctors() {
             <ul>
               {availability.map((item) => (
                 <li key={item.hour}>
-                  <span>{item.hour}:00h </span>
-                  <span className={item.available ? "available" : "unavailable"}>
+                  <span>
+                    <TbClockHour7 /> {String(item.hour).padStart(2, '0')}:00h{' '}
+                  </span>
+                  <span
+                    className={item.available ? 'available' : 'unavailable'}
+                  >
                     {item.available ? (
-                      <AiOutlineCheck color="green" /> 
+                      <AiOutlineCheck color="green" />
                     ) : (
-                      <AiOutlineClose color="red" /> 
+                      <AiOutlineClose color="red" />
                     )}
-                    {item.available ? "Disponível" : "Indisponível"}
+                    {item.available ? 'Disponível' : 'Indisponível'}
                   </span>
                 </li>
               ))}
             </ul>
           </AvailabilityList>
-
         </div>
       </CalenderWrapper>
 
@@ -176,5 +199,5 @@ export function AvailibityDoctors() {
         onConfirmDelete={confirmAppointment}
       />
     </Content>
-  );
+  )
 }

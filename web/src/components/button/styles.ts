@@ -1,8 +1,8 @@
-import { darken } from 'polished';
-import styled, { css } from 'styled-components';
+import { darken } from 'polished'
+import styled, { css } from 'styled-components'
 
 interface ButtonContainerProps {
-  size: 'small' | 'medium' | 'large';
+  size: 'small' | 'medium' | 'large'
 }
 
 export const ButtonContainer = styled.button<ButtonContainerProps>`
@@ -11,14 +11,13 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
 
   font-size: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);
   border: 0;
-  margin-top: 16px;
   transition: background-color 0.2s;
   border-radius: 8px;
   cursor: pointer;
 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 6px;
 
   transition: background-color 0.3s;
@@ -52,7 +51,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   }
 
   span {
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     display: inline-block;
     transition: transform 300ms;
   }
@@ -62,7 +61,7 @@ export const ButtonContainer = styled.button<ButtonContainerProps>`
   }
 
   svg {
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     margin-right: 6px;
   }
-`;
+`

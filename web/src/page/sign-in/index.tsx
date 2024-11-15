@@ -1,6 +1,6 @@
 import { FiLock, FiMail } from 'react-icons/fi'
 
-import logo from "../../assets/logo.png";
+import logo from '../../assets/logo.png'
 
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -12,8 +12,8 @@ import { useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 import { Input } from '../../components/input'
 import { Loading } from '../../components/loading'
-import { Button } from '../../components/button';
-import { useAuth } from '../../hook/auth';
+import { Button } from '../../components/button'
+import { useAuth } from '../../hook/auth'
 
 const createUserSchema = z.object({
   email: z
@@ -64,18 +64,16 @@ export function SignIn() {
         await signIn({ ...data })
         console.log('users', data)
 
-
         navigate('/dashboard')
         if (data !== undefined) {
           toast.success('Usuário Logado.')
         }
-
       } catch {
         toast.error('Ocorreu um erro ao se cadastrar, tente novamente!')
         setLoading(false)
       }
     },
-    [],
+    [navigate, signIn],
   )
 
   return (
@@ -102,7 +100,12 @@ export function SignIn() {
                 errorMessage={errors?.password?.message ?? ''}
               />
 
-              <Button size='large' title='Cadastrar' disabled={isSubmitting} type="submit">
+              <Button
+                size="large"
+                title="Cadastrar"
+                disabled={isSubmitting}
+                type="submit"
+              >
                 {loading ? <Loading /> : 'Cadastrar'}
               </Button>
             </form>
@@ -112,7 +115,6 @@ export function SignIn() {
             <span>-&gt;</span>
             <p>Quero me cadastrar</p>
           </Link>
-
         </AnimationContainer>
       </Content>
       <Background />

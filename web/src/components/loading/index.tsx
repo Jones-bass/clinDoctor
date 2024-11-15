@@ -1,4 +1,3 @@
-
 import { PuffLoader } from 'react-spinners'
 import { LoadingContainer } from './styles'
 

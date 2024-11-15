@@ -1,5 +1,5 @@
-import logo from "../../assets/logo.png";
-import { Logo, Main, Section, } from "./styles";
+import logo from '../../assets/logo.png'
+import { Logo, Main, Section } from './styles'
 
 export function AboutPage() {
   return (
@@ -9,7 +9,5 @@ export function AboutPage() {
         <Logo src={logo} alt="logo clindoctor" />
       </Section>
     </Main>
-  );
+  )
 }
-
-

@@ -1,9 +1,20 @@
-import { FaBaby, FaFlask, FaHeartbeat, FaPumpSoap } from "react-icons/fa";
-import { Container, Icon, ListItem, Section, ContentContainer, IconFaHeartbeat, ImageLeft, ImageRight, LayoutCell, LayoutWrap } from "./styles";
+import { FaBaby, FaFlask, FaHeartbeat, FaPumpSoap } from 'react-icons/fa'
+import {
+  Container,
+  Icon,
+  ListItem,
+  Section,
+  ContentContainer,
+  IconFaHeartbeat,
+  ImageLeft,
+  ImageRight,
+  LayoutCell,
+  LayoutWrap,
+} from './styles'
 
-import { Link } from "react-router-dom";
-import { RiHeartPulseLine } from "react-icons/ri";
-import { useEffect, useRef, useState } from "react";
+import { Link } from 'react-router-dom'
+import { RiHeartPulseLine } from 'react-icons/ri'
+import { useEffect, useRef, useState } from 'react'
 
 const items = [
   {
@@ -26,7 +37,7 @@ const items = [
     title: 'Laboratório',
     text: 'Os pedidos laboratoriais são criados no prontuário eletrônico (EHR) do paciente.',
   },
-];
+]
 
 export function ServicesSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -78,7 +89,10 @@ export function ServicesSection() {
             </IconFaHeartbeat>
             <h1>Nossos Serviços</h1>
             <p>
-              Visitar seu médico regularmente é fundamental para uma vida saudável. Esteja você sentindo os efeitos de um resfriado comum ou apenas vindo para um check-up, queremos ter certeza de que você tem tudo...
+              Visitar seu médico regularmente é fundamental para uma vida
+              saudável. Esteja você sentindo os efeitos de um resfriado comum ou
+              apenas vindo para um check-up, queremos ter certeza de que você
+              tem tudo...
             </p>
 
             <Link to="/cadastro">
@@ -96,13 +110,14 @@ export function ServicesSection() {
       <Container>
         {items.map((item, index) => (
           <ListItem key={index}>
-            <Icon isVisible={isVisible} ref={containerRef}>{item.icon}</Icon>
+            <Icon isVisible={isVisible} ref={containerRef}>
+              {item.icon}
+            </Icon>
             <h2>{item.title}</h2>
             <p>{item.text}</p>
           </ListItem>
         ))}
       </Container>
     </Section>
-  );
-};
-
+  )
+}

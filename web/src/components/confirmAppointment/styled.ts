@@ -1,6 +1,6 @@
-import * as Dialog from '@radix-ui/react-dialog';
-import { darken } from 'polished';
-import styled, { keyframes } from 'styled-components';
+import * as Dialog from '@radix-ui/react-dialog'
+import { darken } from 'polished'
+import styled, { keyframes } from 'styled-components'
 
 const fadeIn = keyframes`
   from {
@@ -9,7 +9,7 @@ const fadeIn = keyframes`
   to {
     opacity: 1;
   }
-`;
+`
 
 const slideUp = keyframes`
   from {
@@ -20,15 +20,15 @@ const slideUp = keyframes`
     opacity: 1;
     transform: translate(-50%, -50%);
   }
-`;
+`
 
 export const Overlay = styled(Dialog.Overlay)`
   background: rgba(0, 0, 0, 0.75);
   position: fixed;
   inset: 0;
-  z-index: 9999; 
+  z-index: 9999;
   animation: ${fadeIn} 0.3s ease-in-out;
-  `;
+`
 
 export const Content = styled(Dialog.Content)`
   padding: 5% 0% 5% 0%;
@@ -43,15 +43,14 @@ export const Content = styled(Dialog.Content)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999; 
+  z-index: 9999;
   animation: ${slideUp} 0.3s ease-in-out;
   text-align: center;
 
   .icon-appointment {
     font-size: clamp(1rem, 2vw + 3rem, 6rem);
   }
-`;
-
+`
 
 export const CloseButton = styled.button`
   background: transparent;
@@ -67,11 +66,11 @@ export const CloseButton = styled.button`
   &:hover {
     color: #666;
   }
-`;
+`
 
 export const ConfirmButton = styled.button`
   background: ${(props) => props.theme.blue};
-  
+
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 5px;
@@ -80,18 +79,18 @@ export const ConfirmButton = styled.button`
   font-weight: bold;
   transition: background-color 0.3s ease;
   margin-left: 1rem;
-  
+
   &:hover {
     background: ${(props) => darken(0.1, props.theme.blue)};
   }
-`;
+`
 
 export const ModalButtons = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
   gap: 1rem;
-`;
+`
 
 export const DateInput = styled.input`
   width: 50%;
@@ -100,4 +99,4 @@ export const DateInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-`;
+`

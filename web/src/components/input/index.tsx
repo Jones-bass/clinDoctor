@@ -20,7 +20,7 @@ export const Input = ({
   return (
     <>
       <Container>
-        {Icon && <Icon className='icon' size={18} />}
+        {Icon && <Icon className="icon" size={18} />}
         <input {...register(name)} {...rest} />
       </Container>
       {errorMessage && <ErrorText>{errorMessage}</ErrorText>}

@@ -8,7 +8,7 @@ import { SignUp } from './page/sign-up'
 import { SignIn } from './page/sign-in'
 import { useAuth } from './hook/auth'
 import { Dashboard } from './page/dashboard'
-import { DoctorList } from './page/DoctorList'
+import { DoctorList } from './page/doctorList'
 import { AvailibityDoctors } from './page/availibityDoctors'
 
 interface PrivateProps {
@@ -42,24 +42,40 @@ export function Router() {
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/medicos" element={<DoctorList />} />
-        <Route path="/detalhar-consulta/:doctorId" element={<AvailibityDoctors />} />
+        <Route
+          path="/detalhar-consulta/:doctorId"
+          element={<AvailibityDoctors />}
+        />
         <Route path="/servicos" element={<ServicePage />} />
         <Route path="/sobre" element={<AboutPage />} />
         <Route path="/contato" element={<ContactPage />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
       </Route>
 
-      <Route path="/login" element={<PublicRoute><SignIn /></PublicRoute>} />
-      <Route path="/cadastro" element={<PublicRoute><SignUp /></PublicRoute>} />
-      
       <Route
-        path="/dashboard"
+        path="/login"
         element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
+          <PublicRoute>
+            <SignIn />
+          </PublicRoute>
         }
       />
-
+      <Route
+        path="/cadastro"
+        element={
+          <PublicRoute>
+            <SignUp />
+          </PublicRoute>
+        }
+      />
     </Routes>
   )
 }

@@ -11,14 +11,13 @@ export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <ToastContainer />
-        <GlobalStyle />
+      <GlobalStyle />
 
       <AuthProvider>
         <BrowserRouter>
           <Router />
         </BrowserRouter>
       </AuthProvider>
-
     </ThemeProvider>
   )
 }

@@ -1,48 +1,54 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import { Button } from '../button';
-import { HeaderContainer } from './styles';
-import logo from '../../assets/logo.png';
-import { BiUser } from 'react-icons/bi';
-import { Loading } from '../loading';
-import { useCallback, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom'
+import { ButtonIcon, HeaderContainer } from './styles'
+import { BiUser } from 'react-icons/bi'
+import { Loading } from '../loading'
+import { useCallback, useState } from 'react'
+import { useAuth } from '../../hook/auth'
+import { Dropdown } from '../dropdown'
+import logo from '../../assets/logo.png'
 
 export function Header() {
-  const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const handleOnSubmit = useCallback(() => {
-    setLoading(true);
-
-    setTimeout(() => {
-      navigate('/login');
-    }, 1000)
-  },
-    [navigate],
-  );
+    setLoading(true)
+    navigate('/login')
+  }, [navigate])
 
   return (
     <HeaderContainer>
       <nav>
         <NavLink to="/" title="inicio">
-          <img src={logo} alt="Logo ClinDoctor" />
+          <img className="logo" src={logo} alt="Logo ClinDoctor" />
         </NavLink>
         <div className="abas">
-          <NavLink to="/servicos" title="Serviços">Serviços</NavLink>
-          <NavLink to="/sobre" title="Sobre">Sobre</NavLink>
-          <NavLink to="/contato" title="Contato">Contato</NavLink>
+          <NavLink to="/servicos" title="Serviços">
+            Serviços
+          </NavLink>
+          <NavLink to="/sobre" title="Sobre">
+            Sobre
+          </NavLink>
+          <NavLink to="/contato" title="Contato">
+            Contato
+          </NavLink>
         </div>
-      </nav>
-      <Button
-        icon={loading ? undefined : BiUser}  
-        title="Login"
-        size="medium"
-        type="button" 
-        onClick={handleOnSubmit}
-      >
-        {loading ? <Loading /> : 'Login'}
-      </Button>
 
+        {user ? (
+          <Dropdown />
+        ) : (
+          <ButtonIcon type="button" onClick={handleOnSubmit}>
+            {loading ? (
+              <Loading />
+            ) : (
+              <>
+                <BiUser className="icon-user" /> <span>Login</span>
+              </>
+            )}
+          </ButtonIcon>
+        )}
+      </nav>
     </HeaderContainer>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 import { FiMail, FiUser, FiLock } from 'react-icons/fi'
 
-import logo from "../../assets/logo.png";
+import logo from '../../assets/logo.png'
 
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -12,8 +12,8 @@ import { useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 import { Input } from '../../components/input'
 import { Loading } from '../../components/loading'
-import { Button } from '../../components/button';
-import { api } from '../../services/api';
+import { Button } from '../../components/button'
+import { api } from '../../services/api'
 
 const createUserSchema = z.object({
   name: z
@@ -28,11 +28,9 @@ const createUserSchema = z.object({
         .map((word) => word[0].toLocaleUpperCase().concat(word.substring(1)))
         .join(' ')
     }),
-    phone: z
-    .string()
-    .min(1, {
-      message: 'O telefone é obrigatório',
-    }),
+  phone: z.string().min(1, {
+    message: 'O telefone é obrigatório',
+  }),
   email: z
     .string()
     .min(1, {
@@ -55,11 +53,9 @@ const createUserSchema = z.object({
     .regex(/[^A-Za-z0-9]/, {
       message: 'A senha deve ter pelo menos um caractere especial.',
     }),
-    avatar_url: z
-    .string()
-    .min(1, {
-      message: 'Foto é obrigatório',
-    })
+  avatar_url: z.string().min(1, {
+    message: 'Foto é obrigatório',
+  }),
 })
 
 type CreateUserData = z.infer<typeof createUserSchema>
@@ -93,7 +89,7 @@ export function SignUp() {
         setLoading(false)
       }
     },
-    [],
+    [navigate],
   )
 
   return (
@@ -114,7 +110,7 @@ export function SignUp() {
                 icon={FiUser}
                 errorMessage={errors?.name?.message ?? ''}
               />
-               <Input
+              <Input
                 name="phone"
                 placeholder="Telefone"
                 icon={FiUser}
@@ -133,18 +129,22 @@ export function SignUp() {
                 icon={FiLock}
                 errorMessage={errors?.password?.message ?? ''}
               />
-               <Input
+              <Input
                 name="avatar_url"
                 placeholder="Avatar"
                 icon={FiUser}
                 errorMessage={errors?.avatar_url?.message ?? ''}
               />
-              <Button size='large' title='Cadastrar' disabled={isSubmitting} type="submit">
+              <Button
+                size="large"
+                title="Cadastrar"
+                disabled={isSubmitting}
+                type="submit"
+              >
                 {loading ? <Loading /> : 'Cadastrar'}
               </Button>
 
               <a href="#">Esqueci minha senha</a>
-
             </form>
           </FormProvider>
 

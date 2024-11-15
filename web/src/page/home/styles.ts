@@ -1,5 +1,5 @@
-import { darken } from 'polished';
-import styled from 'styled-components';
+import { darken } from 'polished'
+import styled from 'styled-components'
 
 export const Main = styled.main`
   max-width: calc(100vw - 16px);
@@ -10,12 +10,12 @@ export const Main = styled.main`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  background: linear-gradient(-160deg, #0463FA 10%, #72EFE9 100%);
+  background: linear-gradient(-160deg, #0463fa 10%, #72efe9 100%);
 
   @media (max-width: 768px) {
     padding: 1rem;
   }
-`;
+`
 
 export const Section = styled.section`
   max-width: 900px;
@@ -23,12 +23,12 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: flex-start;
   margin-left: 2.5%;
-  
+
   span {
     font-family: 'Roboto';
     font-weight: 100;
   }
-`;
+`
 
 export const HighlightSpan = styled.h1`
   width: 90%;
@@ -39,9 +39,9 @@ export const HighlightSpan = styled.h1`
   font-size: clamp(1.25rem, 1.25vw + 1.25rem, 2.5rem);
   text-align: justify;
   line-height: 1.2;
- 
+
   color: ${(props) => props.theme.background};
-`;
+`
 
 export const SpanText = styled.h1`
   color: ${(props) => props.theme.background};
@@ -59,17 +59,14 @@ export const SpanText = styled.h1`
       opacity: 1;
     }
   }
-`;
-
+`
 
 export const Description = styled.p`
   font-size: clamp(0.65rem, 0.65vw + 0.65rem, 1rem);
   color: ${(props) => props.theme.backgroundSecundary};
- 
-
-  margin: 0;
+  margin-bottom: 1%;
   padding: 0;
-`;
+`
 
 export const MedicImage = styled.img`
   width: 25%;
@@ -82,7 +79,7 @@ export const MedicImage = styled.img`
     margin: 2rem auto 0;
     width: 80%;
   }
-`;
+`
 
 export const AboutContainer = styled.div`
   display: flex;
@@ -93,21 +90,20 @@ export const AboutContainer = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
   }
-`;
+`
 
 export const AboutColumn = styled.div`
-
-a {
-    color: ${(props) => props.theme.blue_100}; 
+  a {
+    color: ${(props) => props.theme.blue_100};
     display: block;
     gap: 0px;
     text-decoration: none;
     transition: color 0.2s;
     display: flex;
     align-items: center;
-    
+
     font-family: 'Inter';
-    
+
     cursor: pointer;
 
     > p {
@@ -115,21 +111,22 @@ a {
     }
 
     &:hover {
-      color: ${(props) => darken(0.1, props.theme.blue_100)}; 
-    
-    span {
-      transform: translateX(2px);
-      transition: transform 0.7s ease; 
-    }
+      color: ${(props) => darken(0.1, props.theme.blue_100)};
 
-    svg {
-      margin-right: 6px;
+      span {
+        transform: translateX(2px);
+        transition: transform 0.7s ease;
+      }
+
+      svg {
+        margin-right: 6px;
+      }
     }
-  }}
+  }
 
   flex: 1;
   max-width: 50%;
-  
+
   @media (max-width: 768px) {
     max-width: 100%;
   }
@@ -139,7 +136,7 @@ a {
     font-size: clamp(2rem, 2vw + 2rem, 4rem);
     margin-top: 0%;
   }
-`;
+`
 
 export const ImageContainer = styled.div`
   img {
@@ -175,7 +172,7 @@ export const ImageContainer = styled.div`
       align-self: center;
     }
   }
-`;
+`
 
 export const CheckTextAbout = styled.div`
   display: flex;
@@ -185,15 +182,12 @@ export const CheckTextAbout = styled.div`
   color: ${(props) => props.theme.blue_100};
   margin-bottom: 1rem;
 
-  
   @media (max-width: 768px) {
-      padding: 2.5%;
-    }
-`;
+    padding: 2.5%;
+  }
+`
 
 export const IconAbout = styled.div`
   font-size: clamp(0.75rem, 0.75vw + 0.75rem, 1rem);
   color: ${(props) => props.theme.primary};
-`;
-
-
+`

@@ -16,12 +16,13 @@ export const Container = styled.div`
 
   & + div {
     margin-top: 14px;
+    margin-bottom: 14px;
   }
 
   input {
     flex: 1;
     background: transparent;
-    border: none; 
+    border: none;
     color: ${(props) => props.theme.textTitle};
     padding: 5px;
 
@@ -37,16 +38,14 @@ export const Container = styled.div`
   svg {
     margin-right: 6px;
   }
-
 `
 
 export const ErrorText = styled.span`
   display: block;
   padding: 0px 0px 0px 10px;
 
-  color: #c53030; 
+  color: #c53030;
   margin-bottom: 4px;
   font-size: 12px;
-  text-align: start; 
+  text-align: start;
 `
-

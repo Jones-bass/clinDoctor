@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import backgroundImage from '../../assets/img/header-page.jpg';
+import styled from 'styled-components'
+import backgroundImage from '../../assets/img/header-page.jpg'
 
 export const Main = styled.main`
   flex: 1;
@@ -12,7 +12,7 @@ export const Main = styled.main`
     height: 20vh;
     padding: 1rem;
   }
-`;
+`
 
 export const Section = styled.section`
   max-width: 900px;
@@ -24,13 +24,12 @@ export const Section = styled.section`
   h1 {
     width: 90%;
     margin-bottom: 1rem;
- 
+
     font-size: clamp(2rem, 2vw + 2rem, 4rem);
     color: ${(props) => props.theme.background};
   }
-`;
+`
 
 export const Logo = styled.img`
   width: 20%;
-`;
-
+`
