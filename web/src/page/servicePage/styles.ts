@@ -12,7 +12,6 @@ export const Main = styled.div`
 
   @media (max-width: 768px) {
     height: 20vh;
-    padding: 1rem;
   }
 `
 

@@ -10,13 +10,14 @@ interface PropsType {
 
 export const Section = styled.section<PropsType>`
   width: 100%;
+  
+  margin-top: 2%;
   background: ${(props) => darken(0.08, props.theme.blue_100)};
 
   opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
   transform: translateY(${({ isVisible }) => (isVisible ? '0' : '20%')});
-  transition:
-    opacity 0.5s ease-out,
-    transform 0.5s ease-out;
+  transition: opacity 0.5s ease-out,
+  transform 0.5s ease-out;
 `
 
 export const flipInContainer = keyframes`

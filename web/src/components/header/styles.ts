@@ -162,10 +162,6 @@ export const ButtonIcon = styled.button`
 
     nav {
       width: 100%;
-
-      img {
-        background-color: red;
-      }
     }
   }
 `

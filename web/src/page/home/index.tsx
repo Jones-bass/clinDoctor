@@ -23,6 +23,7 @@ import { MedicalServices } from '../../components/medicalServices'
 import { ServicesSection } from '../../components/servicesSection'
 import { Loading } from '../../components/loading'
 import { useCallback, useState } from 'react'
+import { Footer } from '../../components/footer'
 
 const dados = [
   {
@@ -117,8 +118,9 @@ export function Home() {
         </AboutColumn>
       </AboutContainer>
 
-      <MedicalServices />
       <ServicesSection />
+      <MedicalServices />
+      <Footer />
     </Main>
   )
 }

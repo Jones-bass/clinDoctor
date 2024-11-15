@@ -2,6 +2,7 @@ export const defaultTheme = {
   white: '#ffffff',
   background: '#EFF5FF',
   backgroundSecundary: '#eeeeee',
+  footer: '#333333',
   gray: '#666666',
   blue: '#057CFA',
   blue_100: '#2767CF',

@@ -24,6 +24,7 @@ export const DropdownMenu = styled.div`
 
   font-family: 'Roboto' sans-serif;
   font-weight: 300;
+  text-align: start;
 
   z-index: 1;
 
