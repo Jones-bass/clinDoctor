@@ -2,7 +2,8 @@ import { darken } from "polished"
 import styled from "styled-components"
 
 export const FooterContainer = styled.footer`
-  
+   
+
   width: 100%;
   background-color: ${(props) => props.theme.footer};
   color: ${(props) => props.theme.white};
@@ -67,7 +68,5 @@ export const FooterBottom = styled.div`
 
   font-size: clamp(0.7rem, 0.8vw + 0.8rem, 1rem);
 
-
   color: ${(props) => props.theme.text};
-  padding: 2%;
 `

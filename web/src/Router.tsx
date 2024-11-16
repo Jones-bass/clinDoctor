@@ -42,22 +42,11 @@ export function Router() {
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/medicos" element={<DoctorList />} />
-        <Route
-          path="/detalhar-consulta/:doctorId"
-          element={<AvailibityDoctors />}
-        />
+        <Route path="/detalhar-consulta/:doctorId" element={<AvailibityDoctors />} />
         <Route path="/servicos" element={<ServicePage />} />
         <Route path="/sobre" element={<AboutPage />} />
         <Route path="/contato" element={<ContactPage />} />
-
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
+        <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
       </Route>
 
       <Route

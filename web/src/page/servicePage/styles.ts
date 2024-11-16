@@ -5,7 +5,9 @@ interface PropsType {
   isVisible: boolean
 }
 
-export const Main = styled.div`
+export const Main = styled.div``
+
+export const SectionContainer = styled.div`
   height: 40vh;
   background: url(${backgroundImage}) no-repeat center center;
   background-size: cover;
@@ -86,9 +88,8 @@ export const ServicesContainer = styled.section<PropsType>`
 
   opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
   transform: translateY(${({ isVisible }) => (isVisible ? '0' : '20%')});
-  transition:
-    opacity 0.5s ease-out,
-    transform 0.5s ease-out;
+  transition: opacity 0.5s ease-out,
+  transform 0.5s ease-out;
 `
 
 export const ServicesConatinerCars = styled.article`
@@ -98,7 +99,7 @@ export const ServicesConatinerCars = styled.article`
 
   margin: 0 auto;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease-in;
 
   display: flex;

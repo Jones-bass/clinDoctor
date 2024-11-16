@@ -5,7 +5,6 @@ import {
   Overlay,
   Content,
   CloseButton,
-  ConfirmButton,
   ModalButtons,
   DateInput,
 } from './styled'
@@ -14,6 +13,8 @@ import { useState } from 'react'
 import { api } from '../../services/api'
 import { useAuth } from '../../hook/auth'
 import { toast } from 'react-toastify'
+import { Button } from '../button'
+import { z } from 'zod'
 
 interface DiologProps {
   isOpen: boolean
@@ -22,6 +23,17 @@ interface DiologProps {
   onConfirmDelete: (selectedDate: string) => void
 }
 
+const appointmentSchema = z.object({
+  selectedDate: z.string().min(1, "Por favor, selecione uma data válida")
+    .refine((date) => {
+      const time = new Date(date)
+      const isValidTime = !isNaN(time.getTime()) && time.getMinutes() === 0
+      const dayOfWeek = time.getDay()
+      const isWeekday = dayOfWeek !== 0 && dayOfWeek !== 6
+      return isValidTime && isWeekday
+    }, "Por favor, selecione um dia útil para o agendamento."),
+})
+
 export function ConfirmAppointment({
   isOpen,
   onClose,
@@ -29,9 +41,28 @@ export function ConfirmAppointment({
   onConfirmDelete,
 }: DiologProps) {
   const [selectedDate, setSelectedDate] = useState('')
+  const [error, setError] = useState<string | null>(null)
+
   const { user } = useAuth()
 
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value
+    if (value) {
+      // Garantir que os minutos sejam 00
+      const formattedValue = value.slice(0, 13) + ":00"
+      setSelectedDate(formattedValue)
+    }
+  }
+
   async function handleConfirm() {
+    const validation = appointmentSchema.safeParse({ selectedDate })
+    if (!validation.success) {
+      setError(validation.error.errors[0].message)
+      return
+    }
+
+    setError(null)
+
     if (selectedDate && confirmDoctorProps && user) {
       const formattedDate = new Date(selectedDate).toISOString()
       const appointmentData = {
@@ -82,12 +113,14 @@ export function ConfirmAppointment({
           <DateInput
             type="datetime-local"
             value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
+            onChange={handleDateChange}
             required
           />
 
+          {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
+
           <ModalButtons>
-            <ConfirmButton onClick={handleConfirm}>Confirmar</ConfirmButton>
+            <Button title='Confirmar' size='medium' onClick={handleConfirm} />
           </ModalButtons>
 
           <CloseButton onClick={onClose}>

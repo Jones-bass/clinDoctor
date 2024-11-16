@@ -17,6 +17,7 @@ export const DoctorCard = styled.div`
   padding: 0% 8% 0% 8%;
   width: 90%;
   border-radius: 8px;
+  margin-bottom: 4%;
 `
 
 export const DoctorInfoBox = styled.div`
@@ -39,6 +40,7 @@ export const DoctorStats = styled.div`
   background: ${(props) => props.theme.background};
   border-radius: 8px;
   padding: 2%;
+  margin-bottom: 5%;
   width: 95%;
 
   div {
@@ -98,9 +100,12 @@ export const DoctorDetails = styled.div`
 `
 
 export const CalenderWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  
   align-items: center;
   text-align: center;
-  justify-content: flex-start;
+  justify-content: center;
 
   & > div {
     width: 100%;
@@ -114,19 +119,28 @@ export const CalenderWrapper = styled.div`
 export const AvailabilityList = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0 auto;
 
-  width: 70%;
 
-  h3 {
-    font-size: clamp(0.9rem, 0.9vw + 0.9rem, 1rem);
+  .text-available {
     background: ${(props) => props.theme.blue_200};
-
     width: 100%;
+    border-radius: 4px;
+    margin-bottom: 2%;
     padding: 5%;
+    line-height: 14px;
     text-align: center;
-    color: ${(props) => props.theme.background};
+
+    h3 {
+      color: ${(props) => props.theme.background};      
+      font-size: clamp(0.9rem, 0.9vw + 0.9rem, 1rem);
+    }
+
+    span {
+      font-size: clamp(0.6rem, 0.7vw + 0.7rem, 0.8rem);
+      color: ${(props) => darken(0.15, props.theme.background)};
+    }
   }
+  
 
   li {
     display: flex;
@@ -134,6 +148,10 @@ export const AvailabilityList = styled.ul`
     padding: 2%;
     align-items: center;
     position: relative;
+
+    div {
+      background: red;
+    }
 
     &:last-child {
       border-bottom: none;
@@ -144,6 +162,8 @@ export const AvailabilityList = styled.ul`
       color: ${(props) => props.theme.text};
       position: relative;
     }
+
+    
 
     .available {
       color: ${(props) => props.theme.success};

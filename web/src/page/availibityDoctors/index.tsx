@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { api } from '../../services/api'
 import { Loading } from '../../components/loading'
 import { ConfirmAppointment } from '../../components/confirmAppointment'
@@ -17,10 +17,11 @@ import {
 import { Button } from '../../components/button'
 import { toast } from 'react-toastify'
 import { ptBR } from 'date-fns/locale'
-import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineCheck, AiOutlineClose, AiOutlineSchedule } from 'react-icons/ai'
 import { Calender } from '../dashboard/styles'
 
 import { TbClockHour7 } from 'react-icons/tb'
+import { format, getDay } from 'date-fns'
 
 export interface PropsDoctor {
   id: string
@@ -58,6 +59,19 @@ export function AvailibityDoctors() {
     }
   }, [])
 
+  const selectedDateAsText = useMemo(() => {
+    return format(selectedDate, "'Dia' dd 'de' MMMM", {
+      locale: ptBR,
+    })
+  }, [selectedDate])
+
+  const selectedWeekDay = useMemo(() => {
+    return format(selectedDate, 'cccc', {
+      locale: ptBR,
+    })
+  }, [selectedDate])
+
+
   useEffect(() => {
     async function fetchDoctor() {
       try {
@@ -77,19 +91,23 @@ export function AvailibityDoctors() {
   }, [doctorId])
 
   useEffect(() => {
-    if (doctorId) {
-      api
-        .get(`/doctor/${doctorId}/day-availability`, {
-          params: {
-            year: selectedDate.getFullYear(),
-            month: selectedDate.getMonth() + 1,
-            day: selectedDate.getDate(),
-          },
-        })
-        .then((response) => {
-          setAvailability(response.data.availability)
-        })
+    if (!doctorId || [0, 6].includes(getDay(selectedDate))) {
+      setAvailability([]);
+      return;
     }
+
+    api
+      .get(`/doctor/${doctorId}/day-availability`, {
+        params: {
+          year: selectedDate.getFullYear(),
+          month: selectedDate.getMonth() + 1,
+          day: selectedDate.getDate(),
+        },
+      })
+      .then((response) => {
+        setAvailability(response.data.availability)
+      })
+
   }, [doctorId, selectedDate])
 
   function handleSchedule(doctor: PropsDoctor) {
@@ -123,7 +141,7 @@ export function AvailibityDoctors() {
             <DoctorDetails>
               <h3 className="name">{doctor.name}</h3>
               <p className="username">{doctor.speciality}</p>
-              <p className="join-date">Experience: {doctor.experience}</p>
+              <p className="join-date">{doctor.experience} de experiência</p>
             </DoctorDetails>
             <DoctorBio>{doctor.description}</DoctorBio>
             <DoctorStats>
@@ -168,25 +186,34 @@ export function AvailibityDoctors() {
         />
         <div>
           <AvailabilityList>
-            <h3>Disponibilidade de Horários:</h3>
+            <div className='text-available'>
+              <h3> Disponibilidade de Horários:</h3>
+              <span>{selectedDateAsText} | {selectedWeekDay}</span>
+            </div>
             <ul>
-              {availability.map((item) => (
-                <li key={item.hour}>
-                  <span>
-                    <TbClockHour7 /> {String(item.hour).padStart(2, '0')}:00h{' '}
-                  </span>
-                  <span
-                    className={item.available ? 'available' : 'unavailable'}
-                  >
-                    {item.available ? (
-                      <AiOutlineCheck color="green" />
-                    ) : (
-                      <AiOutlineClose color="red" />
-                    )}
-                    {item.available ? 'Disponível' : 'Indisponível'}
-                  </span>
-                </li>
-              ))}
+              {availability.length > 0 ? (
+
+                availability.map((item) => (
+                  <li key={item.hour}>
+                    <span>
+                      <TbClockHour7 /> {String(item.hour).padStart(2, '0')}:00h{' '}
+                    </span>
+                    <span
+                      className={item.available ? 'available' : 'unavailable'}
+                    >
+                      {item.available ? (
+                        <AiOutlineCheck color="green" />
+                      ) : (
+                        <AiOutlineClose color="red" />
+                      )}
+                      {item.available ? 'Disponível' : 'Indisponível'}
+                    </span>
+                  </li>
+                ))
+              ) : (
+    
+                <AiOutlineSchedule size={80} color='#3A63A5' />
+              )}
             </ul>
           </AvailabilityList>
         </div>

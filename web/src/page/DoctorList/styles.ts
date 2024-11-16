@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import backgroundImage from '../../assets/img/header-page.jpg'
 import { darken } from 'polished'
 
-export const Main = styled.div`
+export const Main = styled.div``
+
+export const SectionContainer = styled.div`
   height: 40vh;
   background: url(${backgroundImage}) no-repeat center center;
   background-size: cover;
@@ -12,7 +14,6 @@ export const Main = styled.div`
     padding: 1rem;
   }
 `
-
 export const Section = styled.section`
   max-width: 950px;
   display: flex;
@@ -51,6 +52,12 @@ export const DoctorsContainer = styled.section`
   padding: 2%;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2%;
+  margin-bottom: 10%;
+  
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const DoctorCard = styled.div`
@@ -58,7 +65,7 @@ export const DoctorCard = styled.div`
   padding: 5%;
   width: 90%;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease-in;
 
   display: flex;

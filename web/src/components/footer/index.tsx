@@ -1,7 +1,8 @@
-import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
 import { FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { FooterBottom, FooterContainer, FooterContent, FooterSection, SocialIcons } from './styles'
-import { FiCalendar, FiClock } from 'react-icons/fi'
+import { FiCalendar, FiClock, FiPhone } from 'react-icons/fi'
+import { AiOutlineMail } from 'react-icons/ai'
+import { IoLocationOutline } from 'react-icons/io5'
 
 export function Footer() {
   return (
@@ -9,9 +10,9 @@ export function Footer() {
       <FooterContent>
         <FooterSection>
           <h2>Contato</h2>
-          <p><FaPhone /> +55 (79) 9 9959-1921</p>
-          <p><FaEnvelope /> jonesdev.tb@gmail.com</p>
-          <p><FaMapMarkerAlt /> Av 7 de Junho 748, Centro, Tobias Barreto - SE</p>
+          <p><FiPhone /> +55 (79) 9 9959-1921</p>
+          <p><AiOutlineMail /> jonesdev.tb@gmail.com</p>
+          <p><IoLocationOutline /> Av 7 de Junho 748, Centro, Tobias Barreto - SE</p>
         </FooterSection>
 
         <FooterSection>

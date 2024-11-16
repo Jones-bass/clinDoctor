@@ -6,6 +6,7 @@ import {
   ContactCard,
   Icon,
   ContactInfo,
+  ContactMain,
 } from './styles'
 
 const contactDetails = [
@@ -38,10 +39,12 @@ const contactDetails = [
 export function ContactPage() {
   return (
     <Main>
-      <ContactSection>
-        <h1>Contato</h1>
-        <p>Estamos aqui para ajudar</p>
-      </ContactSection>
+      <ContactMain>
+        <ContactSection>
+          <h1>Contato</h1>
+          <p>Estamos aqui para ajudar</p>
+        </ContactSection>
+      </ContactMain>
 
       <ContactContainer>
         {contactDetails.map((item) => (

@@ -10,6 +10,7 @@ import {
   CheckTextAbout,
   IconAbout,
   SpanText,
+  MainLogo,
 } from './styles'
 import { FaCheckCircle } from 'react-icons/fa'
 import { Button } from '../../components/button'
@@ -23,7 +24,6 @@ import { MedicalServices } from '../../components/medicalServices'
 import { ServicesSection } from '../../components/servicesSection'
 import { Loading } from '../../components/loading'
 import { useCallback, useState } from 'react'
-import { Footer } from '../../components/footer'
 
 const dados = [
   {
@@ -73,26 +73,29 @@ export function Home() {
 
   return (
     <Main>
-      <Section>
-        <SpanText>
-          <span>CLin</span>Doctor
-        </SpanText>
-        <HighlightSpan>
-          nos proporciona maior acesso a cuidados de saúde. Mais locais, mais
-          vidas transformadas, tudo de forma mais acessível, tudo por aqui.
-        </HighlightSpan>
-        <Description>Tenha acesso a todos os nossos médicos</Description>
+      <MainLogo>
+        <Section>
+          <SpanText>
+            <span>CLin</span>Doctor
+          </SpanText>
+          <HighlightSpan>
+            nos proporciona maior acesso a cuidados de saúde. Mais locais, mais
+            vidas transformadas, tudo de forma mais acessível, tudo por aqui.
+          </HighlightSpan>
+          <Description>Tenha acesso a todos os nossos médicos</Description>
 
-        <Button
-          size="medium"
-          type="button"
-          title="Ver Médicos"
-          onClick={handleOnSubmit}
-        >
-          {loading ? <Loading /> : 'Ver Médicos'}
-        </Button>
-      </Section>
+          <Button
+            size="medium"
+            type="button"
+            title="Ver Médicos"
+            onClick={handleOnSubmit}
+          >
+            {loading ? <Loading /> : 'Ver Médicos'}
+          </Button>
+        </Section>
       <MedicImage src={medic} alt="Foto de um médico" />
+      </MainLogo>
+
 
       <AboutContainer>
         <AboutColumn>
@@ -120,7 +123,6 @@ export function Home() {
 
       <ServicesSection />
       <MedicalServices />
-      <Footer />
     </Main>
   )
 }

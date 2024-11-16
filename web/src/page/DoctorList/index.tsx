@@ -10,6 +10,7 @@ import {
   DoctorBio,
   DoctorStats,
   Section,
+  SectionContainer,
 } from './styles'
 import { Button } from '../../components/button'
 import { Loading } from '../../components/loading'
@@ -64,10 +65,12 @@ export function DoctorList() {
 
   return (
     <Main>
-      <Section>
-        <h1>Nossos</h1>
-        <p>Doutores</p>
-      </Section>
+      <SectionContainer>
+        <Section>
+          <h1>Nossos</h1>
+          <p>Doutores</p>
+        </Section>
+      </SectionContainer>
       <DoctorsContainer>
         {doctors.map((doctor) => (
           <DoctorCard key={doctor.id}>

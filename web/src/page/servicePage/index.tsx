@@ -7,6 +7,7 @@ import {
   ServicesBody,
   Icon,
   Section,
+  SectionContainer,
 } from './styles'
 import {
   FaHeart,
@@ -123,10 +124,13 @@ export function ServicePage() {
 
   return (
     <Main>
-      <Section>
-        <h1>Soluções</h1>
-        <p>para sua saúde</p>
-      </Section>
+      <SectionContainer>
+
+        <Section>
+          <h1>Soluções</h1>
+          <p>para sua saúde</p>
+        </Section>
+      </SectionContainer>
 
       <ServicesContainer isVisible={isVisible} ref={containerRef}>
         {articles.map((item) => (

@@ -1,5 +1,4 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { darken } from 'polished'
 import styled, { keyframes } from 'styled-components'
 
 const fadeIn = keyframes`
@@ -58,33 +57,16 @@ export const CloseButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: #333;
+  color: ${(props) => props.theme.text};
+ 
   font-size: 1.5rem;
   transition: color 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    color: #666;
+    color: ${(props) => props.theme.footer};
   }
 `
-
-export const ConfirmButton = styled.button`
-  background: ${(props) => props.theme.blue};
-
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  margin-left: 1rem;
-
-  &:hover {
-    background: ${(props) => darken(0.1, props.theme.blue)};
-  }
-`
-
 export const ModalButtons = styled.div`
   display: flex;
   justify-content: center;

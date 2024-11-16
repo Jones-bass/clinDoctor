@@ -1,7 +1,9 @@
 import { darken } from 'polished'
 import styled from 'styled-components'
 
-export const Main = styled.main`
+export const Main = styled.main``
+
+export const MainLogo = styled.main`
   max-width: calc(100vw - 16px);
   margin: 0 auto;
   padding: 0 20px;
